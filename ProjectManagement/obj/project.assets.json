@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\ProjectManagement\\ProjectManagement.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\ArseniyM\\Diploma\\ProjectManagement\\ProjectManagement.csproj",
       "projectName": "ProjectManagement",
-      "projectPath": "C:\\Users\\Administrator\\source\\repos\\ProjectManagement\\ProjectManagement.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\ArseniyM\\Diploma\\ProjectManagement\\ProjectManagement.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\source\\repos\\ProjectManagement\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\ArseniyM\\Diploma\\ProjectManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
