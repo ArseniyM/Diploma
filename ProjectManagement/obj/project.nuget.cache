@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XXzjPHbWxaRCtS6bp0CRWmz2EcBAiRXgOkCMjQp7kFSJIpDANMzxUNQrS3Irg+Cod+LzZVIgHkiyXJMBP/9LNg==",
+  "dgSpecHash": "9uJS+4W9m7rNPtvgCUhSNa22FmsghnlXkpvry3tZXBG62n+Iw53GRMoTqfciRsMG2bx8LiessOrq55cC6O4elw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\Source\\Repos\\ArseniyM\\Diploma\\ProjectManagement\\ProjectManagement.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\ArseniyM\\Diploma\\ProjectManagement\\ProjectManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.3\\microsoft.netcore.app.host.win-x64.7.0.3.nupkg.sha512"
   ],

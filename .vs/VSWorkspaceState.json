@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ProjectManagement"
   ],
-  "SelectedNode": "\\ProjectManagement.sln",
+  "SelectedNode": "\\ProjectManagement\\App.xaml",
   "PreviewInSolutionExplorer": false
 }

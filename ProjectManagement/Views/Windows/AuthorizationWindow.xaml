@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:ProjectManagement.Views.Windows"
         xmlns:vm ="clr-namespace:ProjectManagement.ViewModels"
         mc:Ignorable="d"
-        Title="AuthorizationWindow" Height="450" Width="800">
+        Title="{Binding Title}"
+        Height="450" Width="800"
+        Background="{Binding Background}"
+        >
 
     <Window.DataContext>
         <vm:AuthorizationWindowViewModel/>
