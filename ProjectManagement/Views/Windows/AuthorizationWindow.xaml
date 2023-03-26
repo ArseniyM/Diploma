@@ -5,16 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagement.Views.Windows"
         xmlns:vm ="clr-namespace:ProjectManagement.ViewModels"
+        xmlns:ui ="clr-namespace:ProjectManagement.Views.UserControls"
         mc:Ignorable="d"
         Title="{Binding Title}"
         Height="450" Width="800"
-        Background="{Binding Background}"
-        >
+        Background="Transparent"
+        WindowStyle="None"
+        AllowsTransparency ="True"
+        ResizeMode="CanResize">
 
     <Window.DataContext>
         <vm:AuthorizationWindowViewModel/>
     </Window.DataContext>
-    <Grid>
-        
-    </Grid>
+    <Border Background="{Binding Background}"
+            CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ui:HeaderWindow Grid.Row="0"/>
+        </Grid>
+    </Border>
 </Window>

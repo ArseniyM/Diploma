@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Administrator\Source\Repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\
 ProjectManagement
 none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
-C:\Users\Administrator\Source\Repos\ArseniyM\Diploma\ProjectManagement\App.xaml
-2-1551089405
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\App.xaml
+41890535735
 
-61093147682
-1981344941844
-Views\Windows\AuthorizationWindow.xaml;Views\Windows\MainWindow.xaml;
+7603033300
+200-1673098072
+Resources\Styles\StyleBtnHeaderWindow.xaml;Views\UserControls\HeaderWindow.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\MainWindow.xaml;
 
 False
 

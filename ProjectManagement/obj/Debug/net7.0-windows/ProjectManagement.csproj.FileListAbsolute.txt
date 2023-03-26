@@ -22,3 +22,9 @@ C:\Users\Administrator\Source\Repos\ArseniyM\Diploma\ProjectManagement\obj\Debug
 C:\Users\Administrator\Source\Repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\AuthorizationWindow.g.cs
 C:\Users\Administrator\Source\Repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\Administrator\Source\Repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\AuthorizationWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\UserControls\HeaderWindow.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\UserControls\HeaderWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug\net7.0-windows\FontAwesome5.Net.dll
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug\net7.0-windows\FontAwesome5.dll
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\ProjectManagement.csproj.CopyComplete
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Resources\Styles\StyleBtnHeaderWindow.baml
