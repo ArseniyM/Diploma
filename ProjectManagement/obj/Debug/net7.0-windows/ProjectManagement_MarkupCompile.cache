@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\App.xaml
-41890535735
+7433643474
 
-9-306902719
-200-1673098072
-Resources\Styles\StyleBtnHeaderWindow.xaml;Views\UserControls\HeaderWindow.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\MainWindow.xaml;
+121822576948
+2022024087658
+Resources\Styles\StyleBtnHeaderWindow.xaml;Resources\Styles\StyleButtonBorderRadius.xaml;Resources\Styles\StyleTextBoxBorderRadius.xaml;Resources\Styles\StyleWindowChrome.xaml;Views\UserControls\HeaderWindowUI.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\MainWindow.xaml;
 
 False
 

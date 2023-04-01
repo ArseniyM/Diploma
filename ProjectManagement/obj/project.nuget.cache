@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "msHsjPflsqPz/WvCbiCDxrRClphSAc2JWjzxx7hau98mjFE11UIiKXKOmU7fRlZyOxKssKqjBpGNDXHjeRmLYw==",
+  "dgSpecHash": "6xLFekPdB3yyNOmBYvkx4f0lBZTsh0w/VDHteU71q5jZOuCFHbe/LotsR+/KlXtHkXlEOky32MXFT6cOpqsYyA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\ArseniyM\\Diploma\\ProjectManagement\\ProjectManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\fontawesome5\\2.1.11\\fontawesome5.2.1.11.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\7.0.3\\microsoft.netcore.app.host.win-x64.7.0.3.nupkg.sha512"
   ],
   "logs": []

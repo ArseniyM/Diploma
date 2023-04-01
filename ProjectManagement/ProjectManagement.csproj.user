@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Views\UserControls\HeaderWindow.xaml.cs">
+    <Compile Update="Views\UserControls\HeaderWindowUI.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\AuthorizationWindow.xaml.cs">
@@ -18,7 +18,16 @@
     <Page Update="Resources\Styles\StyleBtnHeaderWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\UserControls\HeaderWindow.xaml">
+    <Page Update="Resources\Styles\StyleButtonBorderRadius.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\StyleTextBoxBorderRadius.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\StyleWindowChrome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\HeaderWindowUI.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AuthorizationWindow.xaml">

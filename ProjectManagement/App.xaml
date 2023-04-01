@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:ProjectManagement"
              StartupUri="Views\Windows\AuthorizationWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="../../Resources/Styles/StyleWindowChrome.xaml"/>
     </Application.Resources>
 </Application>
