@@ -16,7 +16,9 @@
         MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
         MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
         FontFamily="Internal"
-        Style="{StaticResource StyleWindowChrome}">
+        Style="{StaticResource StyleWindowChrome}"
+        MinHeight="275"
+        MinWidth="600">
 
     <Window.DataContext>
         <vm:AuthorizationWindowViewModel/>
@@ -26,6 +28,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resources/Styles/StyleButtonBorderRadius.xaml"/>
                 <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StylePasswordBoxBorderRadius.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -72,8 +75,8 @@
                         </DockPanel>
                         <DockPanel>
                             <TextBlock Text="Пароль"/>
-                            <TextBox Margin="10,0,60,0"
-                                     Style="{StaticResource TextBoxBorderRadius}"/>
+                            <PasswordBox Margin="10,0,60,0"
+                                         Style="{StaticResource PasswordBoxBorderRadius}"/>
                         </DockPanel>
                     </StackPanel>
                     <Button Style="{StaticResource ButtonBorderRadius}"

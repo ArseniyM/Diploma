@@ -10,8 +10,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using WpfScreenHelper;
-using WpfScreenHelper.Enum;
 
 namespace ProjectManagement.ViewModels
 {
