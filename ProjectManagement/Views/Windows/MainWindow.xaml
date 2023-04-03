@@ -4,9 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagement"
+        xmlns:ui ="clr-namespace:ProjectManagement.Views.UserControls"
+        xmlns:vm ="clr-namespace:ProjectManagement.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="{Binding Title}"
+        Height="450"
+        Width="800"
+        Style="{StaticResource StyleWindowChrome}"
+        WindowState="Maximized">
 
-    </Grid>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/Styles/StyleButtonBorderRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StylePasswordBoxBorderRadius.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border Background="{Binding Background}"
+            CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+            <ui:HeaderWindowUI Height="30" Grid.Row="0"/>
+        </Grid>
+    </Border>
 </Window>

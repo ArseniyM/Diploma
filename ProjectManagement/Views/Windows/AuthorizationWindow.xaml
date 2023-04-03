@@ -9,13 +9,6 @@
         mc:Ignorable="d"
         Title="{Binding Title}"
         Height="450" Width="800"
-        Background="Transparent"
-        WindowStyle="None"
-        AllowsTransparency ="True"
-        ResizeMode="CanResize"
-        MaxWidth="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Width}"
-        MaxHeight="{Binding Source={x:Static SystemParameters.WorkArea}, Path=Height}"
-        FontFamily="Internal"
         Style="{StaticResource StyleWindowChrome}"
         MinHeight="275"
         MinWidth="600">
@@ -69,20 +62,24 @@
                         </StackPanel.Resources>
                         <DockPanel>
                             <TextBlock Text="Логин"/>
-                            <TextBox Margin="20,0,60,0"
+                            <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"
+                                     Margin="20,0,60,0"
                                      MaxWidth="600"
                                      Style="{StaticResource TextBoxBorderRadius}"/>
                         </DockPanel>
                         <DockPanel>
                             <TextBlock Text="Пароль"/>
-                            <PasswordBox Margin="10,0,60,0"
+                            <PasswordBox Name="Password"
+                                         Margin="10,0,60,0"
                                          Style="{StaticResource PasswordBoxBorderRadius}"/>
                         </DockPanel>
                     </StackPanel>
                     <Button Style="{StaticResource ButtonBorderRadius}"
                             HorizontalAlignment="Center"
                             Margin="0,20"
-                            Content="Войти">
+                            Content="Войти"
+                            Command="{Binding AuthorizationSystemCommand}"
+                            CommandParameter="{Binding ElementName=Password}">
                         
                     </Button>
                 </StackPanel>
