@@ -14,5 +14,10 @@
                               ResizeBorderThickness="3"/>
             </Setter.Value>
         </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect/>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

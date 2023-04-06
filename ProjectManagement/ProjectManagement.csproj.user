@@ -10,6 +10,9 @@
     <Compile Update="Views\UserControls\HeaderWindowUI.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\UserControls\LeftMenuBarUI.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\AuthorizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UserControls\HeaderWindowUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\UserControls\LeftMenuBarUI.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AuthorizationWindow.xaml">

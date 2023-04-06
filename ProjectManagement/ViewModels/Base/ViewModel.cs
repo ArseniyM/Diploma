@@ -24,5 +24,9 @@ namespace ProjectManagement.ViewModels
             OnPropertyChanged(propertyName);
             return true;
         }
+
+        public event EventHandler? DialogComplete;
+
+        protected virtual void OnDialogComplete(EventArgs e) => DialogComplete?.Invoke(this, e);
     }
 }

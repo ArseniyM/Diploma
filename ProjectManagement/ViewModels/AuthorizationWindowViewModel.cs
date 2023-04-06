@@ -1,4 +1,5 @@
 ﻿using ProjectManagement.Infrastructure.Commands;
+using ProjectManagement.Services;
 using ProjectManagement.Views.Windows;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace ProjectManagement.ViewModels
     class AuthorizationWindowViewModel : ViewModel
     {
         #region Поля
+
+        private readonly IUserDialog _userDialog;
+
         #region Title: String - Заголовок окна
         private string _Title = "Авторизация";
 
@@ -54,16 +58,14 @@ namespace ProjectManagement.ViewModels
         private void OnAuthorizationSystemCommandExecuted(object p)
         {
             String pas = ((PasswordBox)p).Password;
-            using (ProjectManagementContext db = new ProjectManagementContext())
+            using (ProjectManagementContext db = new())
             {
                 if (db.Employees.FirstOrDefault(e => e.Login == Login) != null)
                 {
                     if (db.Employees.FirstOrDefault(e => e.Login == Login && e.Password == pas) != null)
                     {
-                        MessageBox.Show("Вход выполнен успешно", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-                        MainWindow window = new MainWindow();
-                        window.Show();
-                        
+                        _userDialog.OpenMainWindow();
+                        OnDialogComplete(EventArgs.Empty);
                     }
                     else
                     {
@@ -90,6 +92,11 @@ namespace ProjectManagement.ViewModels
             AuthorizationSystemCommand = new RelayCommand(OnAuthorizationSystemCommandExecuted, CanAuthorizationSystemCommandExecute);
 
             #endregion
+        }
+
+        public AuthorizationWindowViewModel(IUserDialog userDialog): this()
+        {
+            _userDialog = userDialog;
         }
 
         #endregion

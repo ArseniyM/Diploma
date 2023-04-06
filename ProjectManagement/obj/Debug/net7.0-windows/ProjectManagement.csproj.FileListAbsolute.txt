@@ -55,3 +55,5 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug\net7.0-windows\Npgsql.dll
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug\net7.0-windows\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug\net7.0-windows\ProjectManagement.dll.config
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\UserControls\LeftMenuBarUI.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\UserControls\LeftMenuBarUI.baml
