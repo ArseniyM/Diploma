@@ -39,7 +39,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <ui:LeftMenuBarUI/>
-                <Frame Grid.Column="1"/>
+                <Frame x:Name="MainFrame"
+                       Grid.Column="1"
+                       NavigationUIVisibility="Hidden"/>
             </Grid>
         </Grid>
     </Border>

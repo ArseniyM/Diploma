@@ -57,3 +57,7 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\bin\Debug\net7.0-windows\ProjectManagement.dll.config
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\UserControls\LeftMenuBarUI.g.cs
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\UserControls\LeftMenuBarUI.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\OrganizationalStructurePage.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\Page404.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\OrganizationalStructurePage.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\Page404.baml

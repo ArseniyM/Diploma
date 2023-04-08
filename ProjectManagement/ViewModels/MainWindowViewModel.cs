@@ -1,8 +1,15 @@
-﻿namespace ProjectManagement.ViewModels
+﻿using ProjectManagement.Services;
+using ProjectManagement.ViewModels.Base;
+using System.ComponentModel;
+
+namespace ProjectManagement.ViewModels
 {
     class MainWindowViewModel: ViewModel
     {
+
         #region Поля
+
+
         #region Title: String - Заголовок окна
         private string _Title = "Главное окно";
 
@@ -24,5 +31,14 @@
         #endregion
         #endregion
 
+        #region Конструкторы
+
+        public MainWindowViewModel()
+        {
+
+        }
+
+
+        #endregion
     }
 }

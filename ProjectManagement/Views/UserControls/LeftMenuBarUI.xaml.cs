@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProjectManagement.Services;
+using ProjectManagement.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,13 @@ namespace ProjectManagement.Views.UserControls
         public LeftMenuBarUI()
         {
             InitializeComponent();
+
+            Loaded += LeftMenuBarUI_Loaded;
+        }
+
+        private void LeftMenuBarUI_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new LeftMenuBarUIViewModel(new ViewModelsResolver());
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ProjectManagement.Services;
+using ProjectManagement.Services.NavigatorPages;
 using ProjectManagement.ViewModels;
+using ProjectManagement.ViewModels.Base;
 using ProjectManagement.Views.Windows;
 using System;
 using System.Windows;
@@ -20,6 +22,8 @@ namespace ProjectManagement
             services.AddSingleton<MainWindowViewModel>();
 
             services.AddSingleton<IUserDialog, UserDialogServices>();
+            services.AddSingleton<IPageResolver, PagesResolver>();
+            services.AddSingleton<IViewModelsResolver, ViewModelsResolver>();
 
             services.AddTransient(s =>
             {
