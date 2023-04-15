@@ -61,3 +61,4 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\Page404.g.cs
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\OrganizationalStructurePage.baml
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\Page404.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Resources\Styles\StyleTabControlRadius.baml

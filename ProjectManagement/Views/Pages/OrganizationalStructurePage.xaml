@@ -4,14 +4,211 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:ProjectManagement.ViewModels"
+      xmlns:conv="clr-namespace:ProjectManagement.Infrastructure.Converter"
       xmlns:local="clr-namespace:ProjectManagement.Views.Pages"
+      xmlns:fa ="http://schemas.fontawesome.com/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="OrganizationalStructurePage">
     <Page.DataContext>
         <vm:OrganizationalStructurePageViewModel/>
     </Page.DataContext>
-    <Grid Background="{Binding Background}">
-        <TextBlock Text="123"/>
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <conv:HeightPageToSizeBtnConvecter x:Key="HeightPageToSizeBtnConvecter"/>
+                </ResourceDictionary>
+                <ResourceDictionary Source="../../Resources/Styles/StyleTabControlRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+        
+    </Page.Resources>
+    <Grid>
+        <TabControl Background="Transparent">
+            <TabControl.Resources>
+                
+                <Style BasedOn="{StaticResource StyleTabControlRadius}"
+                       TargetType="TabItem">
+                    <Setter Property="FontSize" Value="{Binding ActualHeight, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Page}},
+                            Converter={StaticResource HeightPageToSizeBtnConvecter}}"/>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="Сотрудники">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="2*" MaxWidth="700" MinWidth="350"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel>
+                        <DockPanel DockPanel.Dock="Top">
+                            <fa:SvgAwesome Icon="Solid_Search"
+                                           Height="32"
+                                           Foreground="#46486C"
+                                           Margin="4"/>
+                            <TextBox Style="{StaticResource TextBoxBorderRadius}"
+                                     Margin="0,4"
+                                     FontSize="18"/>
+                        </DockPanel>
+                        <DataGrid ItemsSource="{Binding Employees}"
+                                  DockPanel.Dock="Bottom"
+                                  Background="Transparent"
+                                  GridLinesVisibility="Horizontal"
+                                  Margin="0,4,0,0">
+                            
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="Background" Value="#D9D9D9"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Имя"
+                                                    Width="*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Фамилия"
+                                                    Width="*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding Surname}"/>
+                                <DataGridTextColumn Header="Отчество"
+                                                    Width="*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding Patronymic}"/>
+                                <DataGridTextColumn Header="Департамент"
+                                                    Width="*"
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding Posts}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                    <Grid Grid.Column="1">
+                        <Border Background="#D9D9D9"
+                                CornerRadius="20"
+                                Margin="10,4,0,10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Информация о сотруднике"
+                                           Foreground="#46486C"
+                                           TextAlignment="Center"
+                                           FontSize="18"
+                                           FontWeight="Bold"
+                                           Padding="0,8"/>
+                                <Grid Grid.Row="1"
+                                      Margin="0,8,0,0">
+                                    <Grid.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#46486C"/>
+                                            <Setter Property="FontSize" Value="18"/>
+                                            <Setter Property="Margin" Value="10,0,0,8"/>
+                                        </Style>
+                                    </Grid.Resources>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Фамилия"
+                                               Grid.Row="0"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="Имя"
+                                               Grid.Row="1"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="Отчество"
+                                               Grid.Row="2"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="День рождение"
+                                               Grid.Row="3"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="Департамент"
+                                               Grid.Row="4"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="Должности"
+                                               Grid.Row="5"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="Проекты"
+                                               Grid.Row="6"
+                                               Grid.Column="0"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="Аверкина"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Foreground="Black"/>
+                                    <TextBlock Text="Анастасия"
+                                               Grid.Row="1"
+                                               Grid.Column="1"
+                                               Foreground="Black"/>
+                                    <TextBlock Text="Максимовна"
+                                               Grid.Row="2"
+                                               Grid.Column="1"
+                                               Foreground="Black"/>
+                                    <TextBlock Text="10.11.2003"
+                                               Grid.Row="3"
+                                               Grid.Column="1"
+                                               Foreground="Black"/>
+                                    <TextBlock Text="Все сотрудники"
+                                               Grid.Row="4"
+                                               Grid.Column="1"
+                                               Foreground="Black"/>
+                                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"
+                                             Grid.Column="1"
+                                             Grid.Row="5"
+                                             Foreground="Black"
+                                             Background="Transparent"
+                                             BorderBrush="#46486C">
+                                        <ListBox.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="FontSize" Value="18"/>
+                                                <Setter Property="Margin" Value="4,0,0,0"/>
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </ListBox.Resources>
+                                    </ListBox>
+                                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"
+                                             Grid.Column="1"
+                                             Grid.Row="6"
+                                             Foreground="Black"
+                                             Background="Transparent"
+                                             BorderBrush="#46486C">
+                                        <ListBox.Resources>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Foreground" Value="Black"/>
+                                                <Setter Property="FontSize" Value="18"/>
+                                                <Setter Property="Margin" Value="4,0,0,0"/>
+                                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                            </Style>
+                                        </ListBox.Resources>
+                                    </ListBox>
+
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Организационная структура">
+                
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

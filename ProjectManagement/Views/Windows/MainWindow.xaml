@@ -41,7 +41,8 @@
                 <ui:LeftMenuBarUI/>
                 <Frame x:Name="MainFrame"
                        Grid.Column="1"
-                       NavigationUIVisibility="Hidden"/>
+                       NavigationUIVisibility="Hidden"
+                       Margin="20,10,20,0"/>
             </Grid>
         </Grid>
     </Border>

@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectManagement.ViewModels
 {
     internal class OrganizationalStructurePageViewModel: ViewModel
     {
-        private String _background = "red";
-        public String Background
+        private List<Employee> _employees = new ();
+        public List<Employee> Employees
         {
-            get => _background;
-            set => Set(ref _background, value);
+            get => _employees;
+            set => Set(ref _employees, value);
         }
 
         public OrganizationalStructurePageViewModel()
         {
-            Background = "red";
+            using(ProjectManagementContext db = new())
+            {
+                Employees = db.Employees.Where(e => e.Blocked == true).ToList();
+            }
         }
     }
 }

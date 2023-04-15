@@ -33,6 +33,9 @@
     <Page Update="Resources\Styles\StyleButtonBorderRadius.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Styles\StyleTabControlRadius.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Styles\StyleTextBoxBorderRadius.xaml">
       <SubType>Designer</SubType>
     </Page>
