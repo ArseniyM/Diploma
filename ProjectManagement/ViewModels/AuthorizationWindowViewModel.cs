@@ -1,4 +1,5 @@
 ﻿using ProjectManagement.Infrastructure.Commands;
+using ProjectManagement.Models;
 using ProjectManagement.Services;
 using System;
 using System.Linq;
@@ -58,6 +59,7 @@ namespace ProjectManagement.ViewModels
                 {
                     if (db.Employees.FirstOrDefault(e => e.Login == Login && e.Password == pas) != null)
                     {
+                        CurrentEmployee.currentEmployee = db.Employees.First(e => e.Login == Login && e.Password == pas);
                         _userDialog.OpenMainWindow();
                         OnDialogComplete(EventArgs.Empty);
                     }

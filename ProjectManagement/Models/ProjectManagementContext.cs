@@ -89,6 +89,16 @@ public partial class ProjectManagementContext : DbContext
             entity.Property(e => e.Surname)
                 .HasColumnType("character varying")
                 .HasColumnName("surname");
+            entity.Property(e => e.Admin)
+                .HasColumnName("admin");
+            entity.Property(e => e.Post)
+                .HasColumnName("post");
+
+
+            entity.HasOne(e => e.PostNavigation).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.Post)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("employee_post_fkey");
 
             entity.HasMany(d => d.Projects).WithMany(p => p.Employees)
                 .UsingEntity<Dictionary<string, object>>(
@@ -203,25 +213,6 @@ public partial class ProjectManagementContext : DbContext
                 .HasForeignKey(d => d.Department)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_post_of_department");
-
-            entity.HasMany(d => d.Employees).WithMany(p => p.Posts)
-                .UsingEntity<Dictionary<string, object>>(
-                    "EmployeePost",
-                    r => r.HasOne<Employee>().WithMany()
-                        .HasForeignKey("Employee")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("fk_employeePost_employee"),
-                    l => l.HasOne<Post>().WithMany()
-                        .HasForeignKey("Post")
-                        .OnDelete(DeleteBehavior.ClientSetNull)
-                        .HasConstraintName("fk_employeePost_post"),
-                    j =>
-                    {
-                        j.HasKey("Post", "Employee").HasName("employeePost_pkey");
-                        j.ToTable("employeePost");
-                        j.IndexerProperty<int>("Post").HasColumnName("post");
-                        j.IndexerProperty<int>("Employee").HasColumnName("employee");
-                    });
         });
 
         modelBuilder.Entity<Project>(entity =>

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:vm="clr-namespace:ProjectManagement.ViewModels"
       xmlns:conv="clr-namespace:ProjectManagement.Infrastructure.Converter"
+      xmlns:pm ="clr-namespace:ProjectManagement"
       xmlns:local="clr-namespace:ProjectManagement.Views.Pages"
       xmlns:fa ="http://schemas.fontawesome.com/icons/"
       mc:Ignorable="d" 
@@ -21,15 +22,16 @@
                 </ResourceDictionary>
                 <ResourceDictionary Source="../../Resources/Styles/StyleTabControlRadius.xaml"/>
                 <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StyleButtonBorderRadius.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
-        
+
+
     </Page.Resources>
     <Grid>
         <TabControl Background="Transparent">
             <TabControl.Resources>
-                
+
                 <Style BasedOn="{StaticResource StyleTabControlRadius}"
                        TargetType="TabItem">
                     <Setter Property="FontSize" Value="{Binding ActualHeight, 
@@ -51,19 +53,44 @@
                                            Margin="4"/>
                             <TextBox Style="{StaticResource TextBoxBorderRadius}"
                                      Margin="0,4"
-                                     FontSize="18"/>
+                                     FontSize="18"
+                                     Text="{Binding FilterStr,
+                                                UpdateSourceTrigger=PropertyChanged}"/>
                         </DockPanel>
+                        <Button Content="Добавить сотрудника"
+                                DockPanel.Dock="Bottom"
+                                Margin="4,8,4,15"
+                                Visibility="{Binding AdminCurrent}"/>
                         <DataGrid ItemsSource="{Binding Employees}"
-                                  DockPanel.Dock="Bottom"
                                   Background="Transparent"
                                   GridLinesVisibility="Horizontal"
-                                  Margin="0,4,0,0">
-                            
-                            <DataGrid.RowStyle>
-                                <Style TargetType="DataGridRow">
-                                    <Setter Property="Background" Value="#D9D9D9"/>
+                                  BorderBrush="Transparent"
+                                  Margin="0,4,0,0"
+                                  AutoGenerateColumns="False"
+                                  SelectedItem="{Binding SelectEmployee,
+                                                    UpdateSourceTrigger=PropertyChanged}"
+                                  IsReadOnly="True">
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="#46486C"/>
+                                    <Setter Property="Foreground" Value="#D9D9D9"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="BorderThickness" Value="0.5"/>
+                                    <Setter Property="Padding" Value="4"/>
+                                    <Setter Property="BorderBrush" Value="#D9D9D9"/>
                                 </Style>
-                            </DataGrid.RowStyle>
+                            </DataGrid.ColumnHeaderStyle>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Background" Value="#D9D9D9"/>
+                                    <Setter Property="Foreground" Value="#46486C"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#b4b4d2"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </DataGrid.CellStyle>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Имя"
                                                     Width="*"
@@ -80,7 +107,7 @@
                                 <DataGridTextColumn Header="Департамент"
                                                     Width="*"
                                                     IsReadOnly="True"
-                                                    Binding="{Binding Posts}"/>
+                                                    Binding="{Binding PostNavigation.DepartmentNavigation.Name}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </DockPanel>
@@ -92,6 +119,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"/>
                                     <RowDefinition/>
+                                    <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Text="Информация о сотруднике"
                                            Foreground="#46486C"
@@ -100,7 +128,8 @@
                                            FontWeight="Bold"
                                            Padding="0,8"/>
                                 <Grid Grid.Row="1"
-                                      Margin="0,8,0,0">
+                                      Margin="0,8,0,0"
+                                      DataContext="{Binding SelectEmployee}">
                                     <Grid.Resources>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Foreground" Value="#46486C"/>
@@ -113,13 +142,14 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" MaxHeight="45"/>
+                                        <RowDefinition Height="*" MaxHeight="45"/>
+                                        <RowDefinition Height="*" MaxHeight="45"/>
+                                        <RowDefinition Height="*" MaxHeight="45"/>
+                                        <RowDefinition Height="*" MaxHeight="45"/>
+                                        <RowDefinition Height="*" MaxHeight="45"/>
+                                        <RowDefinition Height="3.5*"/>
                                         <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="auto"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Фамилия"
                                                Grid.Row="0"
@@ -133,7 +163,7 @@
                                                Grid.Row="2"
                                                Grid.Column="0"
                                                FontWeight="Bold"/>
-                                    <TextBlock Text="День рождение"
+                                    <TextBlock Text="День рождения"
                                                Grid.Row="3"
                                                Grid.Column="0"
                                                FontWeight="Bold"/>
@@ -141,7 +171,7 @@
                                                Grid.Row="4"
                                                Grid.Column="0"
                                                FontWeight="Bold"/>
-                                    <TextBlock Text="Должности"
+                                    <TextBlock Text="Должность"
                                                Grid.Row="5"
                                                Grid.Column="0"
                                                FontWeight="Bold"/>
@@ -149,47 +179,36 @@
                                                Grid.Row="6"
                                                Grid.Column="0"
                                                FontWeight="Bold"/>
-                                    <TextBlock Text="Аверкина"
+                                    <TextBlock Text="{Binding Surname}"
                                                Grid.Row="0"
                                                Grid.Column="1"
                                                Foreground="Black"/>
-                                    <TextBlock Text="Анастасия"
+                                    <TextBlock Text="{Binding Name}"
                                                Grid.Row="1"
                                                Grid.Column="1"
                                                Foreground="Black"/>
-                                    <TextBlock Text="Максимовна"
+                                    <TextBlock Text="{Binding Patronymic}"
                                                Grid.Row="2"
                                                Grid.Column="1"
                                                Foreground="Black"/>
-                                    <TextBlock Text="10.11.2003"
+                                    <TextBlock Text="{Binding DateBirth}"
                                                Grid.Row="3"
                                                Grid.Column="1"
                                                Foreground="Black"/>
-                                    <TextBlock Text="Все сотрудники"
+                                    <TextBlock Text="{Binding PostNavigation.DepartmentNavigation.Name}"
                                                Grid.Row="4"
                                                Grid.Column="1"
                                                Foreground="Black"/>
-                                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"
-                                             Grid.Column="1"
-                                             Grid.Row="5"
-                                             Foreground="Black"
-                                             Background="Transparent"
-                                             BorderBrush="#46486C">
-                                        <ListBox.Resources>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Foreground" Value="Black"/>
-                                                <Setter Property="FontSize" Value="18"/>
-                                                <Setter Property="Margin" Value="4,0,0,0"/>
-                                                <Setter Property="TextWrapping" Value="Wrap"/>
-                                            </Style>
-                                        </ListBox.Resources>
-                                    </ListBox>
-                                    <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"
+                                    <TextBlock Text="{Binding PostNavigation.Name}"
+                                               Grid.Column="1"
+                                               Grid.Row="5"
+                                               Foreground="Black"/>
+                                    <ListBox ItemsSource="{Binding Projects}"
                                              Grid.Column="1"
                                              Grid.Row="6"
                                              Foreground="Black"
                                              Background="Transparent"
-                                             BorderBrush="#46486C">
+                                             BorderThickness="0">
                                         <ListBox.Resources>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="Foreground" Value="Black"/>
@@ -201,13 +220,188 @@
                                     </ListBox>
 
                                 </Grid>
+                                <Button Content="Заблокировать"
+                                            Grid.Row="7"
+                                            Grid.ColumnSpan="2"
+                                            Visibility="{Binding AdminCurrent}"/>
+                                <Border Grid.Row="7"
+                                            Grid.ColumnSpan="2"
+                                            Background="#46486C"
+                                            Opacity="0.4"
+                                            CornerRadius="0,0,20,20"
+                                            Panel.ZIndex="-1"/>
                             </Grid>
                         </Border>
                     </Grid>
                 </Grid>
             </TabItem>
             <TabItem Header="Организационная структура">
-                
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="Foreground" Value="#46486C"/>
+                            <Setter Property="FontSize" Value="20"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                        <Style TargetType="fa:SvgAwesome">
+                            <Setter Property="Height" Value="25"/>
+                            <Setter Property="Width" Value="25"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                            <Setter Property="Foreground" Value="#46486C"/>
+                        </Style>
+                        <Style TargetType="ListView">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              Margin="10, 4, 8, 4">
+                            <TextBlock Text="Департаменты"/>
+                            <fa:SvgAwesome Icon="Solid_Plus"
+                                            Visibility="{Binding AdminCurrent}"/>
+                        </Grid>
+                        <Border Grid.Row="0"
+                                Background="#D9D9D9"
+                                Opacity="0.4"
+                                CornerRadius="10,10, 0, 0"
+                                Panel.ZIndex="-1"/>
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding Departments}"
+                                 Background="Transparent"
+                                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                                 SelectedItem="{Binding SelectDepartament, UpdateSourceTrigger=PropertyChanged}">
+                            
+                                <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DataTemplate.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#46486C"/>
+                                            <Setter Property="FontSize" Value="20"/>
+                                            <Setter Property="FontWeight" Value="Medium"/>
+                                            <Setter Property="Margin" Value="8, 4"/>
+                                        </Style>
+                                    </DataTemplate.Resources>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <WrapPanel Orientation="Horizontal"
+                                    Grid.Row="2"
+                                    Visibility="{Binding AdminCurrent}">
+                            <Button Content="Изменить"/>
+                            <Button Content="Удалить"/>
+                        </WrapPanel>
+                        <Border Grid.Row="2"
+                                Background="#46486C"
+                                Opacity="0.4"
+                                CornerRadius="0,0,10,10"
+                                Panel.ZIndex="-1"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"
+                              Margin="10, 4, 8, 4">
+                            <TextBlock Text="Должности"/>
+                            <fa:SvgAwesome Icon="Solid_Plus"
+                                           Visibility="{Binding AdminCurrent}"/>
+                        </Grid>
+                        <Border Grid.Row="0"
+                                Background="#D9D9D9"
+                                Opacity="0.4"
+                                CornerRadius="10,10, 0, 0"
+                                Panel.ZIndex="-1"/>
+                        <ListBox Grid.Row="1"
+                                 d:ItemsSource="{d:SampleData ItemCount=5}"
+                                 ItemsSource="{Binding SelectDepartament.Posts}"
+                                 Background="Transparent"
+                                 SelectedItem="{Binding SelectPost, UpdateSourceTrigger=PropertyChanged}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DataTemplate.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#46486C"/>
+                                            <Setter Property="FontSize" Value="20"/>
+                                            <Setter Property="FontWeight" Value="Medium"/>
+                                            <Setter Property="Margin" Value="8, 4"/>
+                                        </Style>
+                                    </DataTemplate.Resources>
+                                    <Grid>
+                                        <TextBlock Text="{Binding Path=Name}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <WrapPanel Orientation="Horizontal"
+                                    Grid.Row="2"
+                                    Visibility="{Binding AdminCurrent}">
+                            <WrapPanel.Resources>
+                                
+                            </WrapPanel.Resources>
+                            <Button Content="Изменить"/>
+
+                            <Button Content="Удалить"/>
+                        </WrapPanel>
+                        <Border Grid.Row="2"
+                                Background="#46486C"
+                                Opacity="0.4"
+                                CornerRadius="0,0,10,10"
+                                Panel.ZIndex="-1"/>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Сотрудники"
+                                   DockPanel.Dock="Top"
+                                   Height="25"
+                                   Margin="10, 4, 8, 4"/>
+                        <Border Grid.Row="0"
+                                Background="#D9D9D9"
+                                Opacity="0.4"
+                                CornerRadius="10,10, 0, 0"
+                                Panel.ZIndex="-1"/>
+                        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"
+                                 ItemsSource="{Binding SelectPost.Employees}"
+                                 Grid.Row="1"
+                                 Background="Transparent">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DataTemplate.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#46486C"/>
+                                            <Setter Property="FontSize" Value="20"/>
+                                            <Setter Property="FontWeight" Value="Medium"/>
+                                            <Setter Property="Margin" Value="8, 4"/>
+                                        </Style>
+                                    </DataTemplate.Resources>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Surname}"/>
+                                        <TextBlock Text="{Binding Name[0]}"/>
+                                        <TextBlock Text="{Binding Patronymic[0]}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>
