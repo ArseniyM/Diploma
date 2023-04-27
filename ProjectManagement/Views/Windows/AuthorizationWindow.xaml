@@ -11,7 +11,8 @@
         Height="450" Width="800"
         Style="{StaticResource StyleWindowChrome}"
         MinHeight="275"
-        MinWidth="600">
+        MinWidth="600"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:AuthorizationWindowViewModel/>

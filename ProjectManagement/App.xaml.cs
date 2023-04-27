@@ -20,6 +20,12 @@ namespace ProjectManagement
 
             services.AddTransient<AuthorizationWindowViewModel>();
             services.AddSingleton<MainWindowViewModel>();
+            services.AddTransient<AddDepartmentWindowViewModel>();
+            services.AddTransient<EditDepartmentWindowViewModel>();
+            services.AddTransient<AddPostWindowViewModel>();
+            services.AddTransient<EditPostWindowViewModel>();
+            services.AddTransient<AddEmployeeWindowViewModel>();
+            services.AddTransient<EditEmployeeWindowViewModel>();
 
             services.AddSingleton<IUserDialog, UserDialogServices>();
             services.AddSingleton<IPageResolver, PagesResolver>();
@@ -43,8 +49,63 @@ namespace ProjectManagement
                 return window;
             });
 
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<AddDepartmentWindowViewModel>();
+                var window = new AddDepartmentWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<EditDepartmentWindowViewModel>();
+                var window = new EditDepartmentWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<AddPostWindowViewModel>();
+                var window = new AddPostWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<EditPostWindowViewModel>();
+                var window = new EditPostWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<AddEmployeeWindowViewModel>();
+                var window = new AddEmployeeWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<EditEmployeeWindowViewModel>();
+                var window = new EditEmployeeWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
             return services;
         }
+
 
         protected override void OnStartup(StartupEventArgs e)
         {

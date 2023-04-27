@@ -7,13 +7,13 @@ public partial class Employee
 {
     public int Id { get; set; }
 
-    public string Surname { get; set; } = null!;
+    public string? Surname { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; } = null!;
 
     public string? Patronymic { get; set; }
 
-    public DateOnly DateBirth { get; set; }
+    public DateOnly? DateBirth { get; set; }
 
     public string Login { get; set; } = null!;
 
@@ -23,7 +23,7 @@ public partial class Employee
 
     public bool? New { get; set; }
 
-    public int Post { get; set; }
+    public int? Post { get; set; }
 
     public bool Admin { get; set; }
 

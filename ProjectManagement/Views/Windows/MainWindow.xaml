@@ -11,7 +11,8 @@
         Height="450"
         Width="800"
         Style="{StaticResource StyleWindowChrome}"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>

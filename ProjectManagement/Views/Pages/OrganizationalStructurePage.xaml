@@ -23,6 +23,7 @@
                 <ResourceDictionary Source="../../Resources/Styles/StyleTabControlRadius.xaml"/>
                 <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
                 <ResourceDictionary Source="../../Resources/Styles/StyleButtonBorderRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StyleBtnHeaderWindow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
@@ -60,7 +61,8 @@
                         <Button Content="Добавить сотрудника"
                                 DockPanel.Dock="Bottom"
                                 Margin="4,8,4,15"
-                                Visibility="{Binding AdminCurrent}"/>
+                                Visibility="{Binding AdminCurrent}"
+                                Command="{Binding AddEmployeeSystemCommand}"/>
                         <DataGrid ItemsSource="{Binding Employees}"
                                   Background="Transparent"
                                   GridLinesVisibility="Horizontal"
@@ -69,7 +71,15 @@
                                   AutoGenerateColumns="False"
                                   SelectedItem="{Binding SelectEmployee,
                                                     UpdateSourceTrigger=PropertyChanged}"
-                                  IsReadOnly="True">
+                                  IsReadOnly="True"
+                                  CanUserReorderColumns="False"
+                                  CanUserResizeColumns="False"
+                                  HeadersVisibility="Column"
+                                  SelectionMode="Single" 
+                                  CanUserAddRows="False" 
+                                  CanUserDeleteRows="False" 
+                                  CanUserResizeRows="False" 
+                                  RowDetailsVisibilityMode="Collapsed">
                             <DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="Background" Value="#46486C"/>
@@ -217,13 +227,39 @@
                                                 <Setter Property="TextWrapping" Value="Wrap"/>
                                             </Style>
                                         </ListBox.Resources>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type pm:Project}">
+                                                <DataTemplate.Resources>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Foreground" Value="#46486C"/>
+                                                        <Setter Property="FontSize" Value="20"/>
+                                                        <Setter Property="FontWeight" Value="Medium"/>
+                                                        <Setter Property="Margin" Value="8, 4"/>
+                                                    </Style>
+                                                </DataTemplate.Resources>
+                                                <Grid>
+                                                    <TextBlock Text="{Binding Path=Name}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
                                     </ListBox>
 
                                 </Grid>
-                                <Button Content="Заблокировать"
-                                            Grid.Row="7"
-                                            Grid.ColumnSpan="2"
-                                            Visibility="{Binding AdminCurrent}"/>
+                                <Grid Grid.Row="7">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition MinWidth="180"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Content="Изменить"
+                                            Margin="4, 8"
+                                            Padding="32, 0"
+                                            Command="{Binding EditEmployeeSystemCommand}"/>
+                                    <Button Content="Заблокировать"
+                                            Grid.Column="1"
+                                            Margin="4, 8"
+                                            Visibility="{Binding AdminCurrent}"
+                                            Command="{Binding BlockEmployeeSystemCommand}"/>
+                                </Grid>
                                 <Border Grid.Row="7"
                                             Grid.ColumnSpan="2"
                                             Background="#46486C"
@@ -247,7 +283,6 @@
                         <Style TargetType="fa:SvgAwesome">
                             <Setter Property="Height" Value="25"/>
                             <Setter Property="Width" Value="25"/>
-                            <Setter Property="HorizontalAlignment" Value="Right"/>
                             <Setter Property="Foreground" Value="#46486C"/>
                         </Style>
                         <Style TargetType="ListView">
@@ -268,8 +303,12 @@
                         <Grid Grid.Row="0"
                               Margin="10, 4, 8, 4">
                             <TextBlock Text="Департаменты"/>
-                            <fa:SvgAwesome Icon="Solid_Plus"
-                                            Visibility="{Binding AdminCurrent}"/>
+                            <Button Style="{StaticResource BtnHeaderWindow}"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding AddDepartamentSystemCommand}">
+                                <fa:SvgAwesome Icon="Solid_Plus"
+                                               Visibility="{Binding AdminCurrent}"/>
+                            </Button>
                         </Grid>
                         <Border Grid.Row="0"
                                 Background="#D9D9D9"
@@ -281,8 +320,8 @@
                                  Background="Transparent"
                                  d:ItemsSource="{d:SampleData ItemCount=5}"
                                  SelectedItem="{Binding SelectDepartament, UpdateSourceTrigger=PropertyChanged}">
-                            
-                                <ListBox.ItemTemplate>
+
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <DataTemplate.Resources>
                                         <Style TargetType="TextBlock">
@@ -301,8 +340,10 @@
                         <WrapPanel Orientation="Horizontal"
                                     Grid.Row="2"
                                     Visibility="{Binding AdminCurrent}">
-                            <Button Content="Изменить"/>
-                            <Button Content="Удалить"/>
+                            <Button Content="Изменить"
+                                    Command="{Binding EditDepartamentSystemCommand}"/>
+                            <Button Content="Удалить"
+                                    Command="{Binding DeleteDepartamentCommand}"/>
                         </WrapPanel>
                         <Border Grid.Row="2"
                                 Background="#46486C"
@@ -319,8 +360,12 @@
                         <Grid Grid.Row="0"
                               Margin="10, 4, 8, 4">
                             <TextBlock Text="Должности"/>
-                            <fa:SvgAwesome Icon="Solid_Plus"
+                            <Button Style="{StaticResource BtnHeaderWindow}"
+                                    HorizontalAlignment="Right"
+                                    Command="{Binding AddPostSystemCommand}">
+                                <fa:SvgAwesome Icon="Solid_Plus"
                                            Visibility="{Binding AdminCurrent}"/>
+                            </Button>
                         </Grid>
                         <Border Grid.Row="0"
                                 Background="#D9D9D9"
@@ -354,9 +399,11 @@
                             <WrapPanel.Resources>
                                 
                             </WrapPanel.Resources>
-                            <Button Content="Изменить"/>
+                            <Button Content="Изменить"
+                                    Command="{Binding EditPostCommand}"/>
 
-                            <Button Content="Удалить"/>
+                            <Button Content="Удалить"
+                                    Command="{Binding DeletePostCommand}"/>
                         </WrapPanel>
                         <Border Grid.Row="2"
                                 Background="#46486C"
@@ -379,7 +426,7 @@
                                 CornerRadius="10,10, 0, 0"
                                 Panel.ZIndex="-1"/>
                         <ListBox d:ItemsSource="{d:SampleData ItemCount=5}"
-                                 ItemsSource="{Binding SelectPost.Employees}"
+                                 ItemsSource="{Binding SelectPostEmployees}"
                                  Grid.Row="1"
                                  Background="Transparent">
                             <ListBox.ItemTemplate>

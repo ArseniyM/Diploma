@@ -17,6 +17,7 @@
                 <ResourceDictionary>
                     <conv:WindowStateToIconConvecter x:Key="WindowStateToIconConvecter"/>
                     <conv:WindowStateToToolTipConvecter x:Key="WindowStateToToolTipConvecter"/>
+                    <conv:ResizeModeToVisibilityBtnMenuConverter x:Key="ResizeModeToVisibilityBtnMenuConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -55,6 +56,9 @@
                     </Button>
                     <Button Name="btnEditState"
                             Style="{StaticResource BtnHeaderWindow}"
+                            Visibility="{Binding ResizeMode, 
+                                                 RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
+                                                 Converter={StaticResource ResizeModeToVisibilityBtnMenuConverter}}"
                             ToolTip="{Binding WindowState,
                                               RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
                                               Converter={StaticResource WindowStateToToolTipConvecter}}"
@@ -74,7 +78,7 @@
                             Command="{Binding CloseWindowCommand}"
                             CommandParameter="{Binding ElementName=btnClose}">
                         <Button.Content>
-                            <fa:SvgAwesome Icon="Regular_WindowClose"
+                            <fa:SvgAwesome Icon="Solid_Times"
                                            Foreground="White"
                                            Height="20"/>
                         </Button.Content>
