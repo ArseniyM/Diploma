@@ -74,3 +74,5 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\AddEmployeeWindow.baml
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditEmployeeWindow.g.cs
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditEmployeeWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\ProjectsPage.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\ProjectsPage.baml
