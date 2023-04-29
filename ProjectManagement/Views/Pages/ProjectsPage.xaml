@@ -5,12 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagement.Views.Pages"
       xmlns:pm="clr-namespace:ProjectManagement"
+      xmlns:vm="clr-namespace:ProjectManagement.ViewModels"
       xmlns:fa="http://schemas.fontawesome.com/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProjectsPage">
+    <Page.DataContext>
+        <vm:ProjectsPageViewModel/>
+    </Page.DataContext>
     <Page.Resources>
-        <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
+                <ResourceDictionary Source="../../Resources/Styles/StyleBtnHeaderWindow.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
     <Grid d:Background="#A1A3B4">
         <Grid.RowDefinitions>
@@ -39,14 +48,26 @@
             <fa:SvgAwesome Icon="Solid_Search"
                            Grid.Column="0"/>
             <TextBox Grid.Column="1"
+                     Text="{Binding FilterStr,
+                            UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource TextBoxBorderRadius}"
                      VerticalAlignment="Center"
                      Margin="8,0"
                      BorderBrush="#46486C"/>
-            <fa:SvgAwesome Icon="Solid_Filter"
-                           Grid.Column="2"/>
+            <Button Grid.Column="2"
+                    Command="{Binding VisibilityFilterCommand}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource BtnHeaderWindow}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="Margin" Value="8,4"/>
+                        <Setter Property="Padding" Value="0"/>
+                    </Style>
+                </Button.Style>
+                <fa:SvgAwesome Icon="Solid_Filter" Margin="0"/>
+            </Button>
         </Grid>
-        <WrapPanel Visibility="Visible" Grid.Row="1"
+        <WrapPanel Visibility="{Binding VisibilityFilter, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"
                        Orientation="Horizontal"
                        Margin="2, 4, 2, 8">
             <WrapPanel.Resources>
@@ -60,16 +81,16 @@
             <StackPanel Orientation="Horizontal"
                             Margin="4">
                 <TextBlock Text="Дата начала"/>
-                <DatePickerTextBox/>
+                <DatePickerTextBox Text="{Binding StartDateFirst, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Text="-"/>
-                <DatePickerTextBox/>
+                <DatePickerTextBox Text="{Binding StartDateSecond, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                                 Margin="4">
                 <TextBlock Text="Дата окончания"/>
-                <DatePickerTextBox/>
+                <DatePickerTextBox Text="{Binding CompletDateFirst, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Text="-"/>
-                <DatePickerTextBox/>
+                <DatePickerTextBox Text="{Binding CompletDateSecond, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                                 Margin="4">
@@ -79,9 +100,18 @@
                           Grid.Column="1"
                           Margin="8,4,0,0">
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Foreground="Black" Content="Все" IsChecked="True"/>
-                        <RadioButton Foreground="Black" Content="Завершенные"/>
-                        <RadioButton Foreground="Black" Content="Незавершенные"/>
+                        <RadioButton Foreground="Black"
+                                     Content="Все"
+                                     IsChecked="{Binding AllStatus,
+                                                 UpdateSourceTrigger=PropertyChanged}"/>
+                        <RadioButton Foreground="Black"
+                                     Content="Завершенные"
+                                     IsChecked="{Binding CompletStatus,
+                                                 UpdateSourceTrigger=PropertyChanged}"/>
+                        <RadioButton Foreground="Black"
+                                     Content="Незавершенные"
+                                     IsChecked="{Binding NoCompletStatus,
+                                                 UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>
@@ -149,10 +179,11 @@
                         <ListBoxItem.Content>
                             <fa:SvgAwesome Icon="Solid_FolderPlus"
                                            Width="160"
-                                           Foreground="#46486C"/>
+                                           Foreground="#46486C"
+                                           Cursor="Hand"/>
                         </ListBoxItem.Content>
                     </ListBoxItem>
-                    <CollectionContainer Collection="{d:SampleData ItemCount=12}"/>
+                    <d:CollectionContainer Collection="{d:SampleData ItemCount=12}"/>
                 </CompositeCollection>
             </ListBox.ItemsSource>
         </ListBox>

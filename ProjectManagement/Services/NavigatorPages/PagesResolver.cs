@@ -13,6 +13,7 @@ namespace ProjectManagement.Services.NavigatorPages
         public PagesResolver()
         {
             _pagesResolvers.Add(Navigation.OrganizationalStructurePageAlias, () => new OrganizationalStructurePage());
+            _pagesResolvers.Add(Navigation.ProjectsPageAlias, () => new ProjectsPage());
         }
 
         public Page GetPageInstance(string alias)

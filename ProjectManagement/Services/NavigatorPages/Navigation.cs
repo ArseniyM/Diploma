@@ -9,6 +9,7 @@ namespace ProjectManagement.Services.NavigatorPages
         #region Constants
 
         public static readonly string OrganizationalStructurePageAlias = "OrganizationalStructurePage";
+        public static readonly string ProjectsPageAlias = "ProjectsPage";
         public static readonly string NotFoundPageAlias = "404";
 
         #endregion

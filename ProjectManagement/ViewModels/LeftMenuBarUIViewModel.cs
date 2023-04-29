@@ -12,6 +12,7 @@ namespace ProjectManagement.ViewModels
         #region Поля
 
         public static readonly string OrganizationalStructurePageViewModelAlias = "OrganizationalStructurePage";
+        public static readonly string ProjectsPageViewModelAlias = "ProjectsPageViewModel";
         public static readonly string NotFoundPageViewModelAlias = "Page404ViewModel";
 
 
@@ -23,6 +24,13 @@ namespace ProjectManagement.ViewModels
         public INotifyPropertyChanged OrganizationalStructurePage
         {
             get => _organizationalStructurePageViewModel;
+        }
+
+
+        private readonly INotifyPropertyChanged _projectsPageViewModel;
+        public INotifyPropertyChanged ProjectsPage
+        {
+            get => _projectsPageViewModel;
         }
 
         #region StatusMenu: Bool - Состояние меню (true - развернуто, false - свернуто)
@@ -53,6 +61,13 @@ namespace ProjectManagement.ViewModels
         }
         private bool CanGoToPageOrgStractCommandExecute(object p) => true;
 
+        public ICommand GoToPageProjectsCommand { get; }
+        private void OnGoToPageProjectCommandExecuted(object p)
+        {
+            Navigation.Navigate(Navigation.ProjectsPageAlias, ProjectsPage);
+        }
+        private bool CanGoToPageProjectCommandExecute(object p) => true;
+
         #endregion
 
         #region Конструктор
@@ -61,6 +76,7 @@ namespace ProjectManagement.ViewModels
             StatusMenu = false;
             EditStatusMenuCommand = new RelayCommand(OnEditStatusMenuCommandExecuted, CanEditStatusMenuCommandExecute);
             GoToPageOrgStractCommand = new RelayCommand(OnGoToPageOrgStractCommandExecuted, CanGoToPageOrgStractCommandExecute);
+            GoToPageProjectsCommand = new RelayCommand(OnGoToPageProjectCommandExecuted, CanGoToPageProjectCommandExecute);
         }
 
         public LeftMenuBarUIViewModel(IViewModelsResolver viewModelsResolver) : this()
@@ -68,6 +84,7 @@ namespace ProjectManagement.ViewModels
             _resolver = viewModelsResolver;
 
             _organizationalStructurePageViewModel = _resolver.GetViewModelInstance(OrganizationalStructurePageViewModelAlias);
+            _projectsPageViewModel = _resolver.GetViewModelInstance(ProjectsPageViewModelAlias);
         }
         #endregion
     }
