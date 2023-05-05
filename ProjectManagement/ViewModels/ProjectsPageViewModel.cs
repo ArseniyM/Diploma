@@ -1,6 +1,9 @@
-﻿using ProjectManagement.Infrastructure.Commands;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ProjectManagement.Infrastructure.Commands;
+using ProjectManagement.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -9,8 +12,8 @@ namespace ProjectManagement.ViewModels
 {
     class ProjectsPageViewModel: ViewModel
     {
-        private List<Project> _projects = new();
-        public List<Project> Projects
+        private ObservableCollection<Project> _projects = new();
+        public ObservableCollection<Project> Projects
         {
             get => _projects;
             set => Set(ref _projects, value);
@@ -116,41 +119,52 @@ namespace ProjectManagement.ViewModels
         }
         private bool CanVisibilityFilterCommandExecute(object p) => true;
 
+        public ICommand AddProjectCommand { get; }
+        private void OnAddProjectCommandExecuted(object p)
+        {
+            App.Services.GetRequiredService<IUserDialog>().OpenAddProjectWindow();
+            Filter();
+        }
+        private bool CanAddProjectCommandExecute(object p) => true;
+
         private void Filter()
         {
+            Projects.Clear();
 
             using (ProjectManagementContext db = new ())
-            {
-                Projects = db.Projects.Where(e => e.Name.Contains(FilterStr)).ToList();
-            }
+                db.Projects.Where(e => e.Name.Contains(FilterStr)).ToList().ForEach(Projects.Add);
 
             DateOnly date;
 
             if (Projects.Count != 0 && DateOnly.TryParse(StartDateFirst, out date))
-                Projects = Projects.Where(e => e.StartDate > date).ToList();
+            {
+                Projects.Where(e => e.StartDate < date).ToList().ForEach(e => Projects.Remove(e));
+            }
+               
 
             if (Projects.Count != 0 && DateOnly.TryParse(StartDateSecond, out date))
-                Projects = Projects.Where(e => e.StartDate < date).ToList();
+                Projects.Where(e => e.StartDate > date).ToList().ForEach(e => Projects.Remove(e));
 
             if (Projects.Count != 0 && DateOnly.TryParse(CompletDateFirst, out date))
-                Projects = Projects.Where(e => e.CompletDate < date).ToList();
+                Projects.Where(e => e.CompletDate > date).ToList().ForEach(e => Projects.Remove(e));
 
             if (Projects.Count != 0 && DateOnly.TryParse(CompletDateSecond, out date))
-                Projects = Projects.Where(e => e.CompletDate > date).ToList();
+                Projects.Where(e => e.CompletDate < date).ToList().ForEach(e => Projects.Remove(e));
 
             if (Projects.Count != 0 && CompletStatus)
-                Projects = Projects.Where(e => e.Completed).ToList();
+                Projects.Where(e => !e.Completed).ToList().ForEach(e => Projects.Remove(e));
             else if (Projects.Count != 0 && NoCompletStatus)
-                Projects = Projects.Where(e => !e.Completed).ToList();
+                Projects.Where(e => e.Completed).ToList().ForEach(e => Projects.Remove(e));
 
         }
 
         public ProjectsPageViewModel()
         {
             VisibilityFilterCommand = new RelayCommand(OnVisibilityFilterCommandExecuted, CanVisibilityFilterCommandExecute);
+            AddProjectCommand = new RelayCommand(OnAddProjectCommandExecuted, CanAddProjectCommandExecute);
             using (ProjectManagementContext db = new())
             {
-                Projects = db.Projects.ToList();
+                db.Projects.ToList().ForEach(Projects.Add);
             }
         }
     }

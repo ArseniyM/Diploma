@@ -15,15 +15,17 @@
     </Page.DataContext>
     <Page.Resources>
         <ResourceDictionary>
+            <CollectionViewSource x:Key="SourceProject" Source="{Binding Projects, UpdateSourceTrigger=PropertyChanged}"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resources/Styles/StyleTextBoxBorderRadius.xaml"/>
                 <ResourceDictionary Source="../../Resources/Styles/StyleBtnHeaderWindow.xaml"/>
+                <ResourceDictionary Source="../../Resources/DataTemple/ListBoxProjects.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
     <Grid d:Background="#A1A3B4">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -120,6 +122,9 @@
                  Background="Transparent"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  Padding="8">
+            <ListBox.Resources>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}"/>
+            </ListBox.Resources>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type pm:Project}">
                     <DataTemplate.Resources>
@@ -177,13 +182,18 @@
                 <CompositeCollection>
                     <ListBoxItem Visibility="Visible">
                         <ListBoxItem.Content>
-                            <fa:SvgAwesome Icon="Solid_FolderPlus"
+                            <Button Style="{StaticResource BtnHeaderWindow}"
+                                    Width="160"
+                                    Command="{Binding AddProjectCommand}">
+                                <fa:SvgAwesome Icon="Solid_FolderPlus"
                                            Width="160"
                                            Foreground="#46486C"
                                            Cursor="Hand"/>
+                            </Button>
                         </ListBoxItem.Content>
                     </ListBoxItem>
-                    <d:CollectionContainer Collection="{d:SampleData ItemCount=12}"/>
+                    <CollectionContainer Collection="{Binding Source={StaticResource SourceProject}}"/>
+                    <d:CollectionContainer Collection="{d:SampleData ItemCount=5}"/>
                 </CompositeCollection>
             </ListBox.ItemsSource>
         </ListBox>

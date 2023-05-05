@@ -253,6 +253,7 @@
                                     <Button Content="Изменить"
                                             Margin="4, 8"
                                             Padding="32, 0"
+                                            Visibility="{Binding AdminCurrent}"
                                             Command="{Binding EditEmployeeSystemCommand}"/>
                                     <Button Content="Заблокировать"
                                             Grid.Column="1"

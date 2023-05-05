@@ -76,3 +76,7 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditEmployeeWindow.baml
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\ProjectsPage.g.cs
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\ProjectsPage.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\AddProjectWindow.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\AddProjectWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Resources\DataTemple\ListBoxEmployees.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Resources\DataTemple\ListBoxProjects.baml

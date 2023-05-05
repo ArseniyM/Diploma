@@ -31,6 +31,9 @@
     <Compile Update="Views\Windows\AddPostWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\AddProjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\AuthorizationWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -45,6 +48,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Resources\DataTemple\ListBoxEmployees.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\DataTemple\ListBoxProjects.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Styles\StylePasswordBoxBorderRadius.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -85,6 +94,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AddPostWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\AddProjectWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AuthorizationWindow.xaml">
