@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
 using ProjectManagement.Models;
 using ProjectManagement.Services;
@@ -35,10 +36,11 @@ namespace ProjectManagement.ViewModels
                 {
                     db.Posts.Load();
                     db.Departments.Load();
-                    Employees = db.Employees.Where(e => e.Blocked == false && (e.Name.StartsWith(FilterStr) ||
-                                                                               e.Surname.StartsWith(FilterStr) ||
-                                                                               e.Patronymic.StartsWith(FilterStr) ||
-                                                                               e.PostNavigation.DepartmentNavigation.Name.StartsWith(FilterStr))).ToList();
+                    Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                    Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
+                                                     e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
+                                                     (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) ||
+                                                     e.PostNavigation.DepartmentNavigation.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.PostNavigation.DepartmentNavigation.Name, FilterStr) <= 3)).ToList();
                     SelectEmployee = Employees.FirstOrDefault();
                 }
             }
@@ -81,7 +83,7 @@ namespace ProjectManagement.ViewModels
             {
                 Set(ref _selectPost, value);
                 if (SelectPost != null)
-                    SelectPostEmployees = SelectPost.Employees.Where(e => e.Blocked == false).ToList();
+                    SelectPostEmployees = SelectPost.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
             }
         }
 
@@ -104,7 +106,7 @@ namespace ProjectManagement.ViewModels
                 db.Departments.Load();
                 db.Posts.Load();
                 db.Employees.Load();
-                Employees = db.Employees.Where(e => !e.Blocked).ToList();
+                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
                 SelectEmployee = Employees.FirstOrDefault();
             }
         }
@@ -122,7 +124,7 @@ namespace ProjectManagement.ViewModels
                 db.Departments.Load();
                 db.Posts.Load();
                 db.Employees.Load();
-                Employees = db.Employees.Where(e => !e.Blocked).ToList();
+                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
                 SelectEmployee = Employees.FirstOrDefault();
             }
         }
@@ -144,7 +146,7 @@ namespace ProjectManagement.ViewModels
                     db.Departments.Load();
                     db.Posts.Load();
                     db.Employees.Load();
-                    Employees = db.Employees.Where(e => !e.Blocked).ToList();
+                    Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
                     SelectEmployee = Employees.FirstOrDefault();
                 }
             }
@@ -329,10 +331,7 @@ namespace ProjectManagement.ViewModels
             {
                 db.Posts.Load();
                 db.Departments.Load();
-                Employees = db.Employees.Where(e => e.Blocked == false && (e.Name.StartsWith(FilterStr) ||
-                                                                           e.Surname.StartsWith(FilterStr) ||
-                                                                           e.Patronymic.StartsWith(FilterStr) ||
-                                                                           e.PostNavigation.DepartmentNavigation.Name.StartsWith(FilterStr))).ToList();
+                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
                 SelectEmployee = Employees.FirstOrDefault();
 
                 Departments = db.Departments.ToList();

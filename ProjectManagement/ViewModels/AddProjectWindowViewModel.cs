@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,10 @@ namespace ProjectManagement.ViewModels
                 
                 using(ProjectManagementContext db = new())
                 {
-                    Employees = db.Employees.Where(e => (e.Name.StartsWith(FilterStr) || e.Surname.StartsWith(FilterStr) || e.Patronymic.StartsWith(FilterStr)) && !EmployeesListBox.Contains(e)).ToList();
+                    Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                    Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
+                                                      e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
+                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) && !EmployeesListBox.Contains(e))).ToList();
                     DropDownOpen = !(Employees.Count == 0);
                 }
             }
@@ -69,7 +73,10 @@ namespace ProjectManagement.ViewModels
                 _selectEmployee = null;
                 using (ProjectManagementContext db = new())
                 {
-                    Employees = db.Employees.Where(e => (e.Name.StartsWith(FilterStr) || e.Surname.StartsWith(FilterStr) || e.Patronymic.StartsWith(FilterStr)) && !EmployeesListBox.Contains(e)).ToList();
+                    Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                    Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
+                                                      e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
+                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) && !EmployeesListBox.Contains(e))).ToList();
                 }
             }
         }
@@ -105,7 +112,10 @@ namespace ProjectManagement.ViewModels
                 EmployeesListBox.Remove(SelectedEmployeesListBox);
             using (ProjectManagementContext db = new())
             {
-                Employees = db.Employees.Where(e => (e.Name.StartsWith(FilterStr) || e.Surname.StartsWith(FilterStr) || e.Patronymic.StartsWith(FilterStr)) && !EmployeesListBox.Contains(e)).ToList();
+                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
+                                                  e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
+                                                  (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) && !EmployeesListBox.Contains(e))).ToList();
             }
         }
         private bool CanDeleteSelectEmployeesCommandExecute(object p) => SelectedEmployeesListBox != null;
@@ -172,7 +182,7 @@ namespace ProjectManagement.ViewModels
             BackCommand = new RelayCommand(OnBackCommandExecuted, CanBackCommandExecute);
             using(ProjectManagementContext db = new())
             {
-                Employees = db.Employees.ToList();
+                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
             }
         }
     }

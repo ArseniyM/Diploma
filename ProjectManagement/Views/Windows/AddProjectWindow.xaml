@@ -164,7 +164,11 @@
                                         <Setter Property="Foreground" Value="#46486C"/>
                                     </Style>
                                 </DataTemplate.Resources>
-                                <TextBlock Text="{Binding Name}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Surname}"/>
+                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Patronymic}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>

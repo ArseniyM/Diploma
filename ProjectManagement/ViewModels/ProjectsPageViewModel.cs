@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
 using ProjectManagement.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -132,15 +132,14 @@ namespace ProjectManagement.ViewModels
             Projects.Clear();
 
             using (ProjectManagementContext db = new ())
-                db.Projects.Where(e => e.Name.Contains(FilterStr)).ToList().ForEach(Projects.Add);
+                db.Projects.ToList().ForEach(Projects.Add);
+
+            Projects.Where(e => !e.Name.Contains(FilterStr) && LevenshteinDistance.Distance(e.Name, FilterStr) > 3).ToList().ForEach(e => Projects.Remove(e));
 
             DateOnly date;
 
             if (Projects.Count != 0 && DateOnly.TryParse(StartDateFirst, out date))
-            {
                 Projects.Where(e => e.StartDate < date).ToList().ForEach(e => Projects.Remove(e));
-            }
-               
 
             if (Projects.Count != 0 && DateOnly.TryParse(StartDateSecond, out date))
                 Projects.Where(e => e.StartDate > date).ToList().ForEach(e => Projects.Remove(e));
