@@ -43,8 +43,17 @@
                             HorizontalAlignment="Right"
                             Margin="0,0,20,0"
                             Height="30">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource BtnHeaderWindow}">
+                            <Setter Property="Cursor" Value="Arrow"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Gray"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Resources>
                     <Button Name="btnHide"
-                            Style="{StaticResource BtnHeaderWindow}"
                             ToolTip="Свернуть"
                             Command="{Binding HideWindowCommand}"
                             CommandParameter="{Binding ElementName=btnHide}">
@@ -55,7 +64,6 @@
                         </Button.Content>
                     </Button>
                     <Button Name="btnEditState"
-                            Style="{StaticResource BtnHeaderWindow}"
                             Visibility="{Binding ResizeMode, 
                                                  RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
                                                  Converter={StaticResource ResizeModeToVisibilityBtnMenuConverter}}"
@@ -73,7 +81,6 @@
                         </Button.Content>
                     </Button>
                     <Button Name="btnClose"
-                            Style="{StaticResource BtnHeaderWindow}"
                             ToolTip="Закрыть"
                             Command="{Binding CloseWindowCommand}"
                             CommandParameter="{Binding ElementName=btnClose}">

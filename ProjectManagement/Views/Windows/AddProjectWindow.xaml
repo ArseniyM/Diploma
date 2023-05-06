@@ -162,6 +162,7 @@
                                 <DataTemplate.Resources>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="Foreground" Value="#46486C"/>
+                                        <Setter Property="Margin" Value="0,0,8,0"/>
                                     </Style>
                                 </DataTemplate.Resources>
                                 <StackPanel Orientation="Horizontal">

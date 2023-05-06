@@ -3,6 +3,7 @@
     public interface IUserDialog
     {
         void OpenMainWindow();
+        void OpenNewEmployeeWindow();
         void OpenAuthorizationWindow();
         void OpenAddDepartmentWindow();
         void OpenEditDepartmentWindow();

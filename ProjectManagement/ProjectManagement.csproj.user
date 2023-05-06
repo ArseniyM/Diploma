@@ -46,6 +46,9 @@
     <Compile Update="Views\Windows\EditPostWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\NewEmployeeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\DataTemple\ListBoxEmployees.xaml">
@@ -112,6 +115,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\NewEmployeeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

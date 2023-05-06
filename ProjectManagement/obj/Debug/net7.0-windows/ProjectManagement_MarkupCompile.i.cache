@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\App.xaml
-22-1627487086
+2376257927
 
-641872962291
+66697203386
 2171825890704
-Resources\DataTemple\ListBoxEmployees.xaml;Resources\DataTemple\ListBoxProjects.xaml;Resources\Styles\StyleBtnHeaderWindow.xaml;Resources\Styles\StyleButtonBorderRadius.xaml;Resources\Styles\StylePasswordBoxBorderRadius.xaml;Resources\Styles\StyleTabControlRadius.xaml;Resources\Styles\StyleTextBoxBorderRadius.xaml;Resources\Styles\StyleWindowChrome.xaml;Views\Pages\OrganizationalStructurePage.xaml;Views\Pages\Page404.xaml;Views\Pages\ProjectsPage.xaml;Views\UserControls\HeaderWindowUI.xaml;Views\UserControls\LeftMenuBarUI.xaml;Views\Windows\AddDepartmentWindow.xaml;Views\Windows\AddEmployeeWindow.xaml;Views\Windows\AddPostWindow.xaml;Views\Windows\AddProjectWindow.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\EditDepartmentWindow.xaml;Views\Windows\EditEmployeeWindow.xaml;Views\Windows\EditPostWindow.xaml;Views\Windows\MainWindow.xaml;
+Resources\DataTemple\ListBoxEmployees.xaml;Resources\DataTemple\ListBoxProjects.xaml;Resources\Styles\StyleBtnHeaderWindow.xaml;Resources\Styles\StyleButtonBorderRadius.xaml;Resources\Styles\StylePasswordBoxBorderRadius.xaml;Resources\Styles\StyleTabControlRadius.xaml;Resources\Styles\StyleTextBoxBorderRadius.xaml;Resources\Styles\StyleWindowChrome.xaml;Views\Pages\OrganizationalStructurePage.xaml;Views\Pages\Page404.xaml;Views\Pages\ProjectsPage.xaml;Views\UserControls\HeaderWindowUI.xaml;Views\UserControls\LeftMenuBarUI.xaml;Views\Windows\AddDepartmentWindow.xaml;Views\Windows\AddEmployeeWindow.xaml;Views\Windows\AddPostWindow.xaml;Views\Windows\AddProjectWindow.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\EditDepartmentWindow.xaml;Views\Windows\EditEmployeeWindow.xaml;Views\Windows\EditPostWindow.xaml;Views\Windows\MainWindow.xaml;Views\Windows\NewEmployeeWindow.xaml;
 
 True
 

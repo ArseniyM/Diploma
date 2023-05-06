@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
+using ProjectManagement.Models;
 using ProjectManagement.Services;
 using System;
 using System.Collections.ObjectModel;
@@ -12,6 +13,12 @@ namespace ProjectManagement.ViewModels
 {
     class ProjectsPageViewModel: ViewModel
     {
+        private readonly Visibility _visibilityAdmin;
+        public Visibility VisibilityAdmin
+        {
+            get => _visibilityAdmin;
+        }
+
         private ObservableCollection<Project> _projects = new();
         public ObservableCollection<Project> Projects
         {
@@ -159,6 +166,7 @@ namespace ProjectManagement.ViewModels
 
         public ProjectsPageViewModel()
         {
+            _visibilityAdmin = CurrentEmployee.currentEmployee.Admin ? Visibility.Visible : Visibility.Collapsed;
             VisibilityFilterCommand = new RelayCommand(OnVisibilityFilterCommandExecuted, CanVisibilityFilterCommandExecute);
             AddProjectCommand = new RelayCommand(OnAddProjectCommandExecuted, CanAddProjectCommandExecute);
             using (ProjectManagementContext db = new())

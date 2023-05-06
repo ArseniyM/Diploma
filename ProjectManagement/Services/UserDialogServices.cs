@@ -153,5 +153,21 @@ namespace ProjectManagement.Services
             _AddProjectWindow = window;
             window.ShowDialog();
         }
+
+        private NewEmployeeWindow? _NewEmployeeWindow;
+        public void OpenNewEmployeeWindow()
+        {
+            if (_NewEmployeeWindow is { } window)
+            {
+                window.Show();
+                return;
+            }
+
+            window = _Services.GetRequiredService<NewEmployeeWindow>();
+            window.Closed += (_, _) => _NewEmployeeWindow = null;
+
+            _NewEmployeeWindow = window;
+            window.Show();
+        }
     }
 }

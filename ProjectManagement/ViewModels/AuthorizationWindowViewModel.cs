@@ -59,9 +59,17 @@ namespace ProjectManagement.ViewModels
                 {
                     if (db.Employees.FirstOrDefault(e => e.Login == Login && e.Password == pas) != null)
                     {
-                        CurrentEmployee.currentEmployee = db.Employees.First(e => e.Login == Login && e.Password == pas);
-                        _userDialog.OpenMainWindow();
-                        OnDialogComplete(EventArgs.Empty);
+                        if (!db.Employees.FirstOrDefault(e => e.Login == Login && e.Password == pas).Blocked)
+                        {
+                            CurrentEmployee.currentEmployee = db.Employees.First(e => e.Login == Login && e.Password == pas);
+                            if (CurrentEmployee.currentEmployee.New.Value) _userDialog.OpenNewEmployeeWindow();
+                            else _userDialog.OpenMainWindow();
+                            OnDialogComplete(EventArgs.Empty);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Вход для данного сотрудника заблокирован", "Заблокировано", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                     else
                     {

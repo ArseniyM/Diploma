@@ -180,17 +180,32 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemsSource>
                 <CompositeCollection>
-                    <ListBoxItem Visibility="Visible">
+                    <ListBoxItem Visibility="{Binding VisibilityAdmin}">
                         <ListBoxItem.Content>
                             <Button Style="{StaticResource BtnHeaderWindow}"
                                     Width="160"
                                     Command="{Binding AddProjectCommand}">
                                 <fa:SvgAwesome Icon="Solid_FolderPlus"
-                                           Width="160"
-                                           Foreground="#46486C"
-                                           Cursor="Hand"/>
+                                               Width="160"
+                                               Foreground="#46486C"
+                                               Cursor="Hand"
+                                               x:Name="Folder1"/>
                             </Button>
                         </ListBoxItem.Content>
+                        <ListBoxItem.Style>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Effect">
+                                            <Setter.Value>
+                                                <DropShadowEffect Opacity="0.2"
+                                                  BlurRadius="7"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListBoxItem.Style>
                     </ListBoxItem>
                     <CollectionContainer Collection="{Binding Source={StaticResource SourceProject}}"/>
                     <d:CollectionContainer Collection="{d:SampleData ItemCount=5}"/>
