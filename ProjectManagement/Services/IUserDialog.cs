@@ -12,5 +12,7 @@
         void OpenAddEmployeeWindow();
         void OpenEditEmployeeWindow();
         void OpenAddProjectWindow();
+        void OpenProjectWindow();
+        void OpenEditEmployeesProjectWindow();
     }
 }

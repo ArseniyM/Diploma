@@ -119,12 +119,31 @@ namespace ProjectManagement.ViewModels
             }
         }
 
+        private Project? _selectProject;
+        public Project? SelectProject
+        {
+            get => _selectProject;
+            set => Set(ref _selectProject, value);
+        }
+
         public ICommand VisibilityFilterCommand { get; }
         private void OnVisibilityFilterCommandExecuted(object p) {
             if (VisibilityFilter == Visibility.Collapsed) VisibilityFilter = Visibility.Visible;
             else VisibilityFilter = Visibility.Collapsed;
         }
         private bool CanVisibilityFilterCommandExecute(object p) => true;
+
+        public ICommand OpenInfoProjectCommand { get; }
+        private void OnOpenInfoProjectCommandExecuted(object p)
+        {
+            if (p is Project project)
+            {
+                ChangingProject.project = project;
+                App.Services.GetRequiredService<IUserDialog>().OpenProjectWindow();
+                Filter();
+            }
+        }
+        private bool CanOpenInfoProjectCommandExecute(object p) => true;
 
         public ICommand AddProjectCommand { get; }
         private void OnAddProjectCommandExecuted(object p)
@@ -168,6 +187,7 @@ namespace ProjectManagement.ViewModels
         {
             _visibilityAdmin = CurrentEmployee.currentEmployee.Admin ? Visibility.Visible : Visibility.Collapsed;
             VisibilityFilterCommand = new RelayCommand(OnVisibilityFilterCommandExecuted, CanVisibilityFilterCommandExecute);
+            OpenInfoProjectCommand = new RelayCommand(OnOpenInfoProjectCommandExecuted, CanOpenInfoProjectCommandExecute);
             AddProjectCommand = new RelayCommand(OnAddProjectCommandExecuted, CanAddProjectCommandExecute);
             using (ProjectManagementContext db = new())
             {

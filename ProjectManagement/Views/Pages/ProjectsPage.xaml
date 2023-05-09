@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProjectManagement.Views.Pages"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       xmlns:pm="clr-namespace:ProjectManagement"
       xmlns:vm="clr-namespace:ProjectManagement.ViewModels"
       xmlns:fa="http://schemas.fontawesome.com/icons/"
@@ -121,9 +122,13 @@
         <ListBox Grid.Row="2"
                  Background="Transparent"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 Padding="8">
+                 Padding="8"
+                 SelectedItem="{Binding SelectProject,
+                                UpdateSourceTrigger=PropertyChanged}">
             <ListBox.Resources>
-                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}"/>
+                <Style TargetType="ListBoxItem" BasedOn="{StaticResource ListBoxItemStyle}">
+                    
+                </Style>
             </ListBox.Resources>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="{x:Type pm:Project}">
@@ -134,6 +139,13 @@
                         </Style>
                     </DataTemplate.Resources>
                     <Grid Width="160" Height="auto">
+                        <Button Style="{StaticResource BtnHeaderWindow}"
+                                Width="160"
+                                Panel.ZIndex="1"
+                                Command="{Binding DataContext.OpenInfoProjectCommand, 
+                                    RelativeSource={RelativeSource AncestorType=Page}}"
+                                CommandParameter="{Binding DataContext, 
+                                    RelativeSource={RelativeSource Mode=Self}}"/>
                         <StackPanel Margin="0, 42, 0, 20">
                             <TextBlock Text="{Binding Name}"
                                        Height="30"

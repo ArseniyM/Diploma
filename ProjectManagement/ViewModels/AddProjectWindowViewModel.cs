@@ -140,7 +140,7 @@ namespace ProjectManagement.ViewModels
                             Comment = Comment
                         };
                         foreach (Employee emp in EmployeesListBox)
-                            db.Employees.Where(e => e.Id == emp.Id).First().Projects.Add(project);
+                            db.Employees.Where(e => e.Id == emp.Id).Single().Projects.Add(project);
                         db.Projects.Add(project);
                         db.SaveChanges();
                         MessageBox.Show("Новый проект успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);

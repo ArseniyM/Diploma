@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="Новый сотрудник"
         Height="600" Width="800"
-        MinHeight="600"
+        MinHeight="600" MinWidth="500"
         Style="{StaticResource StyleWindowChrome}"
         WindowStartupLocation="CenterScreen">
     <Window.DataContext>

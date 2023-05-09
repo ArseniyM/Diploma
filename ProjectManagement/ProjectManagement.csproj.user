@@ -40,6 +40,9 @@
     <Compile Update="Views\Windows\EditDepartmentWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\EditEmployeesProjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\EditEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,12 +52,18 @@
     <Compile Update="Views\Windows\NewEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\ProjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\DataTemple\ListBoxEmployees.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\DataTemple\ListBoxProjects.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\DataTemple\ListBoxTasks.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Styles\StylePasswordBoxBorderRadius.xaml">
@@ -108,6 +117,9 @@
     <Page Update="Views\Windows\EditDepartmentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\EditEmployeesProjectWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\EditEmployeeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -118,6 +130,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\NewEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\ProjectWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

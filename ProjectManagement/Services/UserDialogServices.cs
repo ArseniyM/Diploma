@@ -169,5 +169,37 @@ namespace ProjectManagement.Services
             _NewEmployeeWindow = window;
             window.Show();
         }
+
+        private ProjectWindow? _ProjectWindow;
+        public void OpenProjectWindow()
+        {
+            if (_ProjectWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<ProjectWindow>();
+            window.Closed += (_, _) => _ProjectWindow = null;
+
+            _ProjectWindow = window;
+            window.ShowDialog();
+        }
+
+        private EditEmployeesProjectWindow? _EditEmployeesProjectWindow;
+        public void OpenEditEmployeesProjectWindow()
+        {
+            if (_EditEmployeesProjectWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<EditEmployeesProjectWindow>();
+            window.Closed += (_, _) => _EditEmployeesProjectWindow = null;
+
+            _EditEmployeesProjectWindow = window;
+            window.ShowDialog();
+        }
     }
 }
