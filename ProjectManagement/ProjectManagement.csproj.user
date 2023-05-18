@@ -25,13 +25,22 @@
     <Compile Update="Views\Windows\AddDepartmentWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\AddEmployeeTaskWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\AddEmployeeWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\AddPhaseWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\AddPostWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\AddProjectWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\AddTaskWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\AuthorizationWindow.xaml.cs">
@@ -102,13 +111,22 @@
     <Page Update="Views\Windows\AddDepartmentWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\AddEmployeeTaskWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\AddPhaseWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AddPostWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AddProjectWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\AddTaskWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\AuthorizationWindow.xaml">

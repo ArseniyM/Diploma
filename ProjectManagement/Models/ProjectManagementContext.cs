@@ -295,7 +295,7 @@ public partial class ProjectManagementContext : DbContext
             entity.HasMany(d => d.DependentTasks).WithMany(p => p.MainTasks)
                 .UsingEntity<Dictionary<string, object>>(
                     "TaskLink",
-                    r => r.HasOne<Employee>().WithMany()
+                    r => r.HasOne<Task>().WithMany()
                         .HasForeignKey("DependentTask")
                         .OnDelete(DeleteBehavior.ClientSetNull)
                         .HasConstraintName("taskLink_dependentTask_fkey"),

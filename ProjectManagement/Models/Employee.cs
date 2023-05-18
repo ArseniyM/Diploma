@@ -37,7 +37,5 @@ public partial class Employee
 
     public virtual ICollection<Task> TaskResponsibleNavigations { get; } = new List<Task>();
 
-    public virtual ICollection<Task> MainTasks { get; } = new List<Task>();
-
     public virtual ICollection<Project> Projects { get; } = new List<Project>();
 }

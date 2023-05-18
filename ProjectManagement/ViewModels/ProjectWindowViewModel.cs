@@ -54,6 +54,12 @@ namespace ProjectManagement.ViewModels
         }
         #endregion
 
+        private readonly Visibility _visibilityAdmin;
+        public Visibility VisibilityAdmin
+        {
+            get => _visibilityAdmin;
+        }
+
         private Project _project;
         public Project Project
         {
@@ -107,6 +113,36 @@ namespace ProjectManagement.ViewModels
         private bool CanAddEmployeesProjectCommandExecute(object p) => true;
         #endregion
 
+        #region AddPhaseProjectCommand - добавление фазы
+        public ICommand AddPhaseProjectCommand { get; }
+        private void OnAddPhaseProjectCommandExecuted(object p)
+        {
+            App.Services.GetRequiredService<IUserDialog>().OpenAddPhaseWindow();
+            using (ProjectManagementContext db = new())
+            {
+                db.Tasks.Load();
+                db.Employees.Load();
+                Phases = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).Phases.ToList();
+            }
+        }
+        private bool CanAddPhaseProjectCommandExecute(object p) => true;
+        #endregion
+
+        #region AddTaskProjectCommand - добавление задачи
+        public ICommand AddTaskProjectCommand { get; }
+        private void OnAddTaskProjectCommandExecuted(object p)
+        {
+            App.Services.GetRequiredService<IUserDialog>().OpenAddTaskWindow();
+            using (ProjectManagementContext db = new())
+            {
+                db.Tasks.Load();
+                db.Employees.Load();
+                Phases = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).Phases.ToList();
+            }
+        }
+        private bool CanAddTaskProjectCommandExecute(object p) => true;
+        #endregion
+
         #region DeleteSelectEmployeesCommand - команда удаления сотрудника из проекта
         public ICommand DeleteSelectEmployeesCommand { get; }
         private void OnDeleteSelectEmployeesCommandExecuted(object p)
@@ -153,9 +189,12 @@ namespace ProjectManagement.ViewModels
 
         public ProjectWindowViewModel()
         {
+            AddPhaseProjectCommand = new RelayCommand(OnAddPhaseProjectCommandExecuted, CanAddPhaseProjectCommandExecute);
+            AddTaskProjectCommand = new RelayCommand(OnAddTaskProjectCommandExecuted, CanAddTaskProjectCommandExecute);
             AddEmployeesProjectCommand = new RelayCommand(OnAddEmployeesProjectCommandExecuted, CanAddEmployeesProjectCommandExecute);
             DeleteSelectEmployeesCommand = new RelayCommand(OnDeleteSelectEmployeesCommandExecuted, CanDeleteSelectEmployeesCommandExecute);
 
+            _visibilityAdmin = CurrentEmployee.currentEmployee.Admin ? Visibility.Visible : Visibility.Collapsed;
             Project = ChangingProject.project;
             NameProject = Project.Name;
             using (ProjectManagementContext db = new ProjectManagementContext())

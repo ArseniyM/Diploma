@@ -14,5 +14,8 @@
         void OpenAddProjectWindow();
         void OpenProjectWindow();
         void OpenEditEmployeesProjectWindow();
+        void OpenAddPhaseWindow();
+        void OpenAddTaskWindow();
+        void OpenAddEmployeeTaskWindow();
     }
 }

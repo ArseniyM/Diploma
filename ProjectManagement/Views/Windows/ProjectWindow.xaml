@@ -70,6 +70,10 @@
                     </TabControl.Resources>
                     <TabItem Header="Диаграмма">
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
                             <DataGrid d:ItemsSource="{d:SampleData ItemCount=8}"
                                       AutoGenerateColumns="False"
                                       Background="Transparent"
@@ -83,10 +87,25 @@
                                     <DataGridTextColumn Header="Статус"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+
+                            <StackPanel Grid.Row="1"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,4,0,0">
+                                <Button Content="Добавить фазу"
+                                        Command="{Binding AddPhaseProjectCommand}"
+                                        Visibility="{Binding VisibilityAdmin}"/>
+                                <Button Content="Добавить задачу"
+                                        Command="{Binding AddTaskProjectCommand}"/>
+                            </StackPanel>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Задачи">
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
                             <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}"
                                       ItemsSource="{Binding Phases}"
                                       Background="Transparent"
@@ -124,7 +143,7 @@
                                         <Setter Property="FontSize" Value="18"/>
                                         <Setter Property="Content" Value="{Binding Item.Name, 
                                                                            RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
-                                        <d:Setter Property="Content" Value="имя"/>
+                                        <d:Setter Property="Content" Value="Фаза"/>
                                     </Style>
                                     <Style TargetType="DataGridRowsPresenter">
                                         <Setter Property="Background" Value="Transparent"/>
@@ -233,7 +252,16 @@
                                 </DataGrid.Columns>
                             </DataGrid>
 
-                            
+                            <StackPanel Grid.Row="1"
+                                        Orientation="Horizontal"
+                                        HorizontalAlignment="Right"
+                                        Margin="0,4,0,0">
+                                <Button Content="Добавить фазу"
+                                        Command="{Binding AddPhaseProjectCommand}"
+                                        Visibility="{Binding VisibilityAdmin}"/>
+                                <Button Content="Добавить задачу"
+                                        Command="{Binding AddTaskProjectCommand}"/>
+                            </StackPanel>
                         </Grid>
                     </TabItem>
                     <TabItem Header="Участники">
@@ -257,7 +285,8 @@
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Center"
                                     Margin="8, 0"
-                                    Command="{Binding AddEmployeesProjectCommand}">
+                                    Command="{Binding AddEmployeesProjectCommand}"
+                                    Visibility="{Binding VisibilityAdmin}">
                                 <fa:SvgAwesome Icon="Solid_Plus"
                                                Foreground="#D9D9D9"
                                                Width="28"/>
@@ -320,7 +349,7 @@
 
                                         <DataTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="Cross" Property="Visibility" Value="Visible"/>
+                                                <Setter TargetName="Cross" Property="Visibility" Value="{Binding DataContext.VisibilityAdmin, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"/>
                                                 <Setter TargetName="br" Property="Visibility" Value="Visible"/>
                                             </Trigger>
                                         </DataTemplate.Triggers>

@@ -201,5 +201,53 @@ namespace ProjectManagement.Services
             _EditEmployeesProjectWindow = window;
             window.ShowDialog();
         }
+
+        private AddPhaseWindow? _AddPhaseWindow;
+        public void OpenAddPhaseWindow()
+        {
+            if (_AddPhaseWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<AddPhaseWindow>();
+            window.Closed += (_, _) => _AddPhaseWindow = null;
+
+            _AddPhaseWindow = window;
+            window.ShowDialog();
+        }
+
+        private AddTaskWindow? _AddTaskWindow;
+        public void OpenAddTaskWindow()
+        {
+            if (_AddTaskWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<AddTaskWindow>();
+            window.Closed += (_, _) => _AddTaskWindow = null;
+
+            _AddTaskWindow = window;
+            window.ShowDialog();
+        }
+
+        private AddEmployeeTaskWindow? _AddEmployeeTaskWindow;
+        public void OpenAddEmployeeTaskWindow()
+        {
+            if (_AddEmployeeTaskWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<AddEmployeeTaskWindow>();
+            window.Closed += (_, _) => _AddEmployeeTaskWindow = null;
+
+            _AddEmployeeTaskWindow = window;
+            window.ShowDialog();
+        }
     }
 }

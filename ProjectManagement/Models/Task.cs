@@ -31,5 +31,6 @@ public partial class Task
 
     public virtual Status StatusNavigation { get; set; } = null!;
 
-    public virtual ICollection<Employee> DependentTasks { get; } = new List<Employee>();
+    public virtual ICollection<Task> DependentTasks { get; } = new List<Task>();
+    public virtual ICollection<Task> MainTasks { get; } = new List<Task>();
 }
