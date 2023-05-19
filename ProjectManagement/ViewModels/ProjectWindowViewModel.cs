@@ -143,6 +143,23 @@ namespace ProjectManagement.ViewModels
         private bool CanAddTaskProjectCommandExecute(object p) => true;
         #endregion
 
+        #region EditTaskProjectCommand - изменение задачи
+        public ICommand EditTaskProjectCommand { get; }
+        private void OnEditTaskProjectCommandExecuted(object p)
+        {
+            ChangingTask.task = p as Task; 
+            App.Services.GetRequiredService<IUserDialog>().OpenEditTaskWindow();
+            ChangingTask.task = null;
+            using (ProjectManagementContext db = new())
+            {
+                db.Tasks.Load();
+                db.Employees.Load();
+                Phases = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).Phases.ToList();
+            }
+        }
+        private bool CanEditTaskProjectCommandExecute(object p) => p is Task;
+        #endregion
+
         #region DeleteSelectEmployeesCommand - команда удаления сотрудника из проекта
         public ICommand DeleteSelectEmployeesCommand { get; }
         private void OnDeleteSelectEmployeesCommandExecuted(object p)
@@ -191,6 +208,7 @@ namespace ProjectManagement.ViewModels
         {
             AddPhaseProjectCommand = new RelayCommand(OnAddPhaseProjectCommandExecuted, CanAddPhaseProjectCommandExecute);
             AddTaskProjectCommand = new RelayCommand(OnAddTaskProjectCommandExecuted, CanAddTaskProjectCommandExecute);
+            EditTaskProjectCommand = new RelayCommand(OnEditTaskProjectCommandExecuted, CanEditTaskProjectCommandExecute);
             AddEmployeesProjectCommand = new RelayCommand(OnAddEmployeesProjectCommandExecuted, CanAddEmployeesProjectCommandExecute);
             DeleteSelectEmployeesCommand = new RelayCommand(OnDeleteSelectEmployeesCommandExecuted, CanDeleteSelectEmployeesCommandExecute);
 

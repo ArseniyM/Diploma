@@ -161,41 +161,49 @@
                                         <Setter Property="ItemTemplate">
                                             <Setter.Value>
                                                 <DataTemplate DataType="{x:Type local:Task}">
-                                                    <Grid MaxWidth="{Binding ActualWidth, 
+                                                    <Grid>
+                                                        <Button Panel.ZIndex="1"
+                                                                Width="auto" Margin="0"
+                                                                Style="{StaticResource BtnHeaderWindow}"
+                                                                Command="{Binding DataContext.EditTaskProjectCommand,
+                                                                          RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                                CommandParameter="{Binding DataContext, RelativeSource={RelativeSource Mode=Self}}"/>
+                                                        <Grid MaxWidth="{Binding ActualWidth, 
                                                                     RelativeSource={RelativeSource AncestorType={x:Type DataGridColumn}}}"
                                                           Margin="8">
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition/>
-                                                            <RowDefinition/>
-                                                            <RowDefinition/>
-                                                            <RowDefinition/>
-                                                        </Grid.RowDefinitions>
-                                                        <TextBlock Text="{Binding Name}"
-                                                                   Height="38"
-                                                                   TextWrapping="Wrap"/>
-                                                        <Grid Grid.Row="1" Grid.RowSpan="2">
-                                                            <TextBlock Text="Срок выполнения: "
-                                                                       TextWrapping="Wrap"/>
-                                                            <TextBlock Text="{Binding DateComplet}"
-                                                                       VerticalAlignment="Bottom"
-                                                                       Margin="4,0"
-                                                                       Grid.Column="1"/>
-                                                            <TextBlock Text="Исполнитель: "
-                                                                       Grid.Row="1"
-                                                                       x:Name="text1"/>
-                                                            <WrapPanel Grid.Column="1" Grid.Row="1">
-                                                                <TextBlock Margin="4,0,0,0" Text="{Binding ExecutorNavigation.Surname}"/>
-                                                                <TextBlock Margin="4,0,0,0" Text="{Binding ExecutorNavigation.Name}"/>
-                                                                <TextBlock Margin="4,0,0,0" Text="{Binding ExecutorNavigation.Patronymic}"/>
-                                                            </WrapPanel>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="{Binding ActualWidth, ElementName=text1}"/>
-                                                                <ColumnDefinition/>
-                                                            </Grid.ColumnDefinitions>
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition/>
                                                                 <RowDefinition/>
+                                                                <RowDefinition/>
+                                                                <RowDefinition/>
                                                             </Grid.RowDefinitions>
+                                                            <TextBlock Text="{Binding Name}"
+                                                                   Height="38"
+                                                                   TextWrapping="Wrap"/>
+                                                            <Grid Grid.Row="1" Grid.RowSpan="2">
+                                                                <TextBlock Text="Срок выполнения: "
+                                                                       TextWrapping="Wrap"/>
+                                                                <TextBlock Text="{Binding DateComplet}"
+                                                                       VerticalAlignment="Bottom"
+                                                                       Margin="4,0"
+                                                                       Grid.Column="1"/>
+                                                                <TextBlock Text="Исполнитель: "
+                                                                       Grid.Row="1"
+                                                                       x:Name="text1"/>
+                                                                <WrapPanel Grid.Column="1" Grid.Row="1">
+                                                                    <TextBlock Margin="4,0,0,0" Text="{Binding ExecutorNavigation.Surname}"/>
+                                                                    <TextBlock Margin="4,0,0,0" Text="{Binding ExecutorNavigation.Name}"/>
+                                                                    <TextBlock Margin="4,0,0,0" Text="{Binding ExecutorNavigation.Patronymic}"/>
+                                                                </WrapPanel>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="{Binding ActualWidth, ElementName=text1}"/>
+                                                                    <ColumnDefinition/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition/>
+                                                                    <RowDefinition/>
+                                                                </Grid.RowDefinitions>
+                                                            </Grid>
                                                         </Grid>
                                                     </Grid>
                                                 </DataTemplate>

@@ -33,6 +33,7 @@ namespace ProjectManagement
             services.AddTransient<AddPhaseWindowViewModel>();
             services.AddTransient<AddTaskWindowViewModel>();
             services.AddTransient<AddEmployeeTaskWindowViewModel>();
+            services.AddTransient<EditTaskWindowViewModel>();
 
             services.AddSingleton<IUserDialog, UserDialogServices>();
             services.AddSingleton<IPageResolver, PagesResolver>();
@@ -168,6 +169,15 @@ namespace ProjectManagement
             {
                 var model = s.GetRequiredService<AddEmployeeTaskWindowViewModel>();
                 var window = new AddEmployeeTaskWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<EditTaskWindowViewModel>();
+                var window = new EditTaskWindow() { DataContext = model };
                 model.DialogComplete += (_, _) => window.Close();
 
                 return window;

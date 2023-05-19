@@ -249,5 +249,21 @@ namespace ProjectManagement.Services
             _AddEmployeeTaskWindow = window;
             window.ShowDialog();
         }
+
+        private EditTaskWindow? _EditTaskWindow;
+        public void OpenEditTaskWindow()
+        {
+            if (_EditTaskWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<EditTaskWindow>();
+            window.Closed += (_, _) => _EditTaskWindow = null;
+
+            _EditTaskWindow = window;
+            window.ShowDialog();
+        }
     }
 }

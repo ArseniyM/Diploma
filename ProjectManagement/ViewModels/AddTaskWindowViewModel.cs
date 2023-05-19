@@ -108,8 +108,21 @@ namespace ProjectManagement.ViewModels
             set
             {
                 Set(ref _selectPhase, value);
+                using (ProjectManagementContext db = new())
+                {
+                    Tasks.Clear();
+                    if (SelectPhase != null)
+                    {
+                        db.Tasks.Where(e => e.Phase == SelectPhase.Id && !MainTasks.Contains(e)).ToList().ForEach(Tasks.Add);
+                        Tasks.Where(e => !e.Name.StartsWith(FilterStr) && !(LevenshteinDistance.Distance(e.Name, FilterStr) <= 3)).OrderByDescending(e => e.DateComplet).ToList().ForEach(e => Tasks.Remove(e));
+
+                    }
+                    MainTasks.Clear();
+                }
             }
         }
+
+
 
         private ObservableCollection<Task> _tasks = new();
         public ObservableCollection<Task> Tasks
@@ -335,6 +348,7 @@ namespace ProjectManagement.ViewModels
             {
                 db.Projects.Include(e => e.Phases).Single(e => e.Id == ChangingProject.project.Id).Phases.ToList().ForEach(Phases.Add);
                 SelectPhase = Phases.FirstOrDefault();
+                
             }
         }
     }

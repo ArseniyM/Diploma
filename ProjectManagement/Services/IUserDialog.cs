@@ -17,5 +17,6 @@
         void OpenAddPhaseWindow();
         void OpenAddTaskWindow();
         void OpenAddEmployeeTaskWindow();
+        void OpenEditTaskWindow();
     }
 }
