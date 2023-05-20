@@ -140,6 +140,7 @@ namespace ProjectManagement.ViewModels
             {
                 ChangingProject.project = project;
                 App.Services.GetRequiredService<IUserDialog>().OpenProjectWindow();
+                ChangingProject.project = null!;
                 Filter();
             }
         }

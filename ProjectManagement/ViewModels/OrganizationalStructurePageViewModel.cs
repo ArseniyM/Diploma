@@ -36,7 +36,7 @@ namespace ProjectManagement.ViewModels
                 {
                     db.Posts.Load();
                     db.Departments.Load();
-                    Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                    Employees = db.Employees.Include(e => e.Projects).Where(e => !e.Blocked && !e.New.Value).ToList();
                     Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
                                                      e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) ||
@@ -105,15 +105,16 @@ namespace ProjectManagement.ViewModels
             {
                 db.Departments.Load();
                 db.Posts.Load();
+                db.Projects.Load();
                 db.Employees.Load();
-                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                Employees = db.Employees.Include(e => e.Projects).Where(e => !e.Blocked && !e.New.Value).ToList();
                 SelectEmployee = Employees.FirstOrDefault();
             }
         }
         private bool CanAddEmployeeCommandExecute(object p) => true;
         #endregion
 
-        #region EditEmployeeSystemCommand - создание нового сотрудника
+        #region EditEmployeeSystemCommand - изменение сотрудника
         public ICommand EditEmployeeSystemCommand { get; }
         private void OnEditEmployeeCommandExecuted(object p)
         {
@@ -122,9 +123,10 @@ namespace ProjectManagement.ViewModels
             using (ProjectManagementContext db = new())
             {
                 db.Departments.Load();
+                db.Projects.Load();
                 db.Posts.Load();
                 db.Employees.Load();
-                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                Employees = db.Employees.Include(e => e.Projects).Where(e => !e.Blocked && !e.New.Value).ToList();
                 SelectEmployee = Employees.FirstOrDefault();
             }
         }
@@ -311,6 +313,31 @@ namespace ProjectManagement.ViewModels
         private bool CanDeletePostCommandExecute(object p) => SelectPost != null;
         #endregion
 
+        #region OpenInfoProjectCommand - открытие окна проекта
+        public ICommand OpenInfoProjectCommand { get; }
+        private void OnOpenInfoProjectCommandExecuted(object p)
+        {
+            if (p is Project project)
+            {
+                ChangingProject.project = project;
+                App.Services.GetRequiredService<IUserDialog>().OpenProjectWindow();
+                ChangingProject.project = null!;
+                using (ProjectManagementContext db = new())
+                {
+                    db.Departments.Load();
+                    db.Posts.Load();
+                    db.Projects.Load();
+                    db.Employees.Load();
+                    Employees = db.Employees.Include(e => e.Projects).Where(e => !e.Blocked && !e.New.Value).ToList();
+                    SelectEmployee = Employees.FirstOrDefault();
+                }
+
+            }
+        }
+        private bool CanOpenInfoProjectCommandExecute(object p) => true;
+        #endregion
+
+
         #endregion
 
         public OrganizationalStructurePageViewModel()
@@ -327,16 +354,18 @@ namespace ProjectManagement.ViewModels
             EditPostCommand = new RelayCommand(OnEditPostCommandExecuted, CanEditPostCommandExecute);
             DeletePostCommand = new RelayCommand(OnDeletePostCommandExecuted, CanDeletePostCommandExecute);
 
-            using(ProjectManagementContext db = new())
+            OpenInfoProjectCommand = new RelayCommand(OnOpenInfoProjectCommandExecuted, CanOpenInfoProjectCommandExecute);
+
+            using (ProjectManagementContext db = new())
             {
                 db.Posts.Load();
+                db.Projects.Load();
                 db.Departments.Load();
-                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
+                Employees = db.Employees.Include(e => e.Projects).Where(e => !e.Blocked && !e.New.Value).ToList();
                 SelectEmployee = Employees.FirstOrDefault();
 
                 Departments = db.Departments.ToList();
                 SelectDepartament = Departments.FirstOrDefault();
-
             }
         }
     }

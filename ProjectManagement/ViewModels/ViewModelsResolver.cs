@@ -13,8 +13,11 @@ namespace ProjectManagement.ViewModels
 
         public ViewModelsResolver()
         {
+            _vmResolvers.Add(LeftMenuBarUIViewModel.MainPageViewModelAlias, () => new MainPageViewModel());
             _vmResolvers.Add(LeftMenuBarUIViewModel.OrganizationalStructurePageViewModelAlias, () => new OrganizationalStructurePageViewModel());
             _vmResolvers.Add(LeftMenuBarUIViewModel.ProjectsPageViewModelAlias, () => new ProjectsPageViewModel());
+            _vmResolvers.Add(LeftMenuBarUIViewModel.TasksPageAlias, () => new MyTasksPageViewModel());
+            
             _vmResolvers.Add(LeftMenuBarUIViewModel.NotFoundPageViewModelAlias, () => new Page404ViewModel());
         }
 

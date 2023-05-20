@@ -96,3 +96,8 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\AddEmployeeTaskWindow.baml
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditTaskWindow.g.cs
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditTaskWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Resources\Styles\StyleToggleButton.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\MyTasksPage.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\MyTasksPage.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\MainPage.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\MainPage.baml

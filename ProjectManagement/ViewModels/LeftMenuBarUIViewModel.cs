@@ -1,4 +1,5 @@
-﻿using ProjectManagement.Infrastructure.Commands;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ProjectManagement.Infrastructure.Commands;
 using ProjectManagement.Services;
 using ProjectManagement.Services.NavigatorPages;
 using ProjectManagement.ViewModels.Base;
@@ -11,7 +12,9 @@ namespace ProjectManagement.ViewModels
     {
         #region Поля
 
+        public static readonly string MainPageViewModelAlias = "MainPage";
         public static readonly string OrganizationalStructurePageViewModelAlias = "OrganizationalStructurePage";
+        public static readonly string TasksPageAlias = "TasksPage";
         public static readonly string ProjectsPageViewModelAlias = "ProjectsPageViewModel";
         public static readonly string NotFoundPageViewModelAlias = "Page404ViewModel";
 
@@ -19,6 +22,11 @@ namespace ProjectManagement.ViewModels
 
         private readonly IViewModelsResolver _resolver;
 
+        private readonly INotifyPropertyChanged _mainPageViewModel;
+        public INotifyPropertyChanged MainPage
+        {
+            get => _mainPageViewModel;
+        }
 
         private readonly INotifyPropertyChanged _organizationalStructurePageViewModel;
         public INotifyPropertyChanged OrganizationalStructurePage
@@ -31,6 +39,12 @@ namespace ProjectManagement.ViewModels
         public INotifyPropertyChanged ProjectsPage
         {
             get => _projectsPageViewModel;
+        }
+
+        private readonly INotifyPropertyChanged _tasksPageViewModel;
+        public INotifyPropertyChanged TasksPage
+        {
+            get => _tasksPageViewModel;
         }
 
         #region StatusMenu: Bool - Состояние меню (true - развернуто, false - свернуто)
@@ -68,6 +82,19 @@ namespace ProjectManagement.ViewModels
         }
         private bool CanGoToPageProjectCommandExecute(object p) => true;
 
+        public ICommand GoToPageTasksCommand { get; }
+        private void OnGoToPageTasksCommandExecuted(object p)
+        {
+            Navigation.Navigate(Navigation.TasksPageAlias, TasksPage);
+        }
+        private bool CanGoToPageTasksCommandExecute(object p) => true;
+
+        public ICommand GoToPageMainCommand { get; }
+        private void OnGoToPageMainCommandExecuted(object p)
+        {
+            Navigation.Navigate(Navigation.MainPageViewModelAlias, MainPage);
+        }
+        private bool CanGoToPageMainCommandExecute(object p) => true;
         #endregion
 
         #region Конструктор
@@ -77,14 +104,21 @@ namespace ProjectManagement.ViewModels
             EditStatusMenuCommand = new RelayCommand(OnEditStatusMenuCommandExecuted, CanEditStatusMenuCommandExecute);
             GoToPageOrgStractCommand = new RelayCommand(OnGoToPageOrgStractCommandExecuted, CanGoToPageOrgStractCommandExecute);
             GoToPageProjectsCommand = new RelayCommand(OnGoToPageProjectCommandExecuted, CanGoToPageProjectCommandExecute);
+            GoToPageTasksCommand = new RelayCommand(OnGoToPageTasksCommandExecuted, CanGoToPageTasksCommandExecute);
+            GoToPageMainCommand = new RelayCommand(OnGoToPageMainCommandExecuted, CanGoToPageMainCommandExecute);
+
+            _mainPageViewModel = App.Services.GetRequiredService<IViewModelsResolver>().GetViewModelInstance(MainPageViewModelAlias);
+            Navigation.Navigate(Navigation.MainPageViewModelAlias, MainPage);
         }
 
         public LeftMenuBarUIViewModel(IViewModelsResolver viewModelsResolver) : this()
         {
             _resolver = viewModelsResolver;
 
+            _mainPageViewModel = _resolver.GetViewModelInstance(MainPageViewModelAlias);
             _organizationalStructurePageViewModel = _resolver.GetViewModelInstance(OrganizationalStructurePageViewModelAlias);
             _projectsPageViewModel = _resolver.GetViewModelInstance(ProjectsPageViewModelAlias);
+            _tasksPageViewModel = _resolver.GetViewModelInstance(TasksPageAlias);
         }
         #endregion
     }

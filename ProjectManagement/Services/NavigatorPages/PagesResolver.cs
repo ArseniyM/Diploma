@@ -12,7 +12,9 @@ namespace ProjectManagement.Services.NavigatorPages
 
         public PagesResolver()
         {
+            _pagesResolvers.Add(Navigation.MainPageViewModelAlias, () => new MainPage());
             _pagesResolvers.Add(Navigation.OrganizationalStructurePageAlias, () => new OrganizationalStructurePage());
+            _pagesResolvers.Add(Navigation.TasksPageAlias, () => new MyTasksPage());
             _pagesResolvers.Add(Navigation.ProjectsPageAlias, () => new ProjectsPage());
         }
 

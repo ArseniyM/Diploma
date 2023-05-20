@@ -76,7 +76,7 @@ namespace ProjectManagement.ViewModels
                     Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
                     Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
                                                       e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
-                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) && !EmployeesListBox.Contains(e))).ToList();
+                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)) && EmployeesListBox.Where(i => i.Id == e.Id).FirstOrDefault() == null)).ToList();
                 }
             }
         }

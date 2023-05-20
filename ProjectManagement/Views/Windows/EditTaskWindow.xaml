@@ -10,8 +10,9 @@
         xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         mc:Ignorable="d"
-        Title="{Binding NameProject}"
+        Title="{Binding EditTask.Name}"
         Height="450" Width="800"
+        MinHeight="450" MinWidth="380"
         Style="{StaticResource StyleWindowChrome}"
         WindowStartupLocation="CenterScreen">
     <Window.DataContext>

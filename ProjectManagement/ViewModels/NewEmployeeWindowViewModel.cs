@@ -77,7 +77,7 @@ namespace ProjectManagement.ViewModels
                     emp.Password = Password;
                     emp.Surname = Surname;
                     emp.Name = Name;
-                    if (emp.Patronymic != null) emp.Patronymic = Patronymic;
+                    if (emp.Patronymic != "") emp.Patronymic = Patronymic;
                     emp.DateBirth = date;
                     emp.New = false;
                     db.SaveChanges();

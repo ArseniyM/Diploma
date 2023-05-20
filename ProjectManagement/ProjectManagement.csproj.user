@@ -7,6 +7,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Pages\MainPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Pages\MyTasksPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Pages\OrganizationalStructurePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -94,6 +100,15 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Resources\Styles\StyleWindowChrome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Resources\Styles\StyleToggleButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Pages\MyTasksPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Pages\OrganizationalStructurePage.xaml">
