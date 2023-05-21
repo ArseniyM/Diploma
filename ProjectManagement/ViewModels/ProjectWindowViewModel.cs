@@ -88,8 +88,54 @@ namespace ProjectManagement.ViewModels
             set => Set(ref _phases, value);
         }
 
+        private DateOnly _dateStart;
+        public DateOnly DateStart
+        {
+            get => _dateStart;
+            set {
+                Set(ref _dateStart, value);
+                DateOnly[] dateOnly = new DateOnly[14];
+                for (int i = 0; i < 14; i++)
+                {
+                    dateOnly[i] = DateStart.AddDays(i);
+                }
+                Dates = dateOnly;
+
+            }
+        }
+
+        private DateOnly[] _dates;
+        public DateOnly[] Dates
+        {
+            get => _dates;
+            set => Set(ref _dates, value);
+        }
 
         #region Команды
+
+        #region PlusDateCommand - увеличение даты при клике
+        public ICommand PlusDateCommand { get; }
+        private void OnPlusDateCommandExecuted(object p) => DateStart = DateStart.AddDays(7);
+        private bool CanPlusDateCommandExecute(object p) => true;
+        #endregion
+
+        #region MinusDateCommand - уменьшение даты при клике
+        public ICommand MinusDateCommand { get; }
+        private void OnMinusDateCommandExecuted(object p) => DateStart = DateStart.AddDays(-7);
+        private bool CanMinusDateCommandExecute(object p) => true;
+        #endregion
+
+        #region PressPlusDateCommand - увеличение даты при нажатии
+        public ICommand PressPlusDateCommand { get; }
+        private void OnPressPlusDateCommandExecuted(object p) => DateStart = DateStart.AddDays(1);
+        private bool CanPressPlusDateCommandExecute(object p) => true;
+        #endregion
+
+        #region PressMinusDateCommand - уменьшение даты при нажатии
+        public ICommand PressMinusDateCommand { get; }
+        private void OnPressMinusDateCommandExecuted(object p) => DateStart = DateStart.AddDays(-1);
+        private bool CanPressMinusDateCommandExecute(object p) => true;
+        #endregion
 
         #region AddEmployeesProjectCommand - команда удаления сотрудника из проекта
         public ICommand AddEmployeesProjectCommand { get; }
@@ -121,6 +167,7 @@ namespace ProjectManagement.ViewModels
             using (ProjectManagementContext db = new())
             {
                 db.Tasks.Load();
+                db.Statuses.Load();
                 db.Employees.Load();
                 Phases = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).Phases.ToList();
             }
@@ -153,6 +200,7 @@ namespace ProjectManagement.ViewModels
             using (ProjectManagementContext db = new())
             {
                 db.Tasks.Load();
+                db.Statuses.Load();
                 db.Employees.Load();
                 Phases = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).Phases.ToList();
             }
@@ -175,6 +223,7 @@ namespace ProjectManagement.ViewModels
                         {
                             db.Tasks.Load();
                             db.Phases.Load();
+                            db.Statuses.Load();
                             db.Projects.Load();
                             db.Employees.Load();
                             Project pr = db.Projects.Include(e => e.Phases).Where(e => e.Id == Project.Id).First();
@@ -206,6 +255,11 @@ namespace ProjectManagement.ViewModels
 
         public ProjectWindowViewModel()
         {
+            PlusDateCommand = new RelayCommand(OnPlusDateCommandExecuted, CanPlusDateCommandExecute);
+            MinusDateCommand = new RelayCommand(OnMinusDateCommandExecuted, CanMinusDateCommandExecute);
+            PressPlusDateCommand = new RelayCommand(OnPressPlusDateCommandExecuted, CanPressPlusDateCommandExecute);
+            PressMinusDateCommand = new RelayCommand(OnPressMinusDateCommandExecuted, CanPressMinusDateCommandExecute);
+
             AddPhaseProjectCommand = new RelayCommand(OnAddPhaseProjectCommandExecuted, CanAddPhaseProjectCommandExecute);
             AddTaskProjectCommand = new RelayCommand(OnAddTaskProjectCommandExecuted, CanAddTaskProjectCommandExecute);
             EditTaskProjectCommand = new RelayCommand(OnEditTaskProjectCommandExecuted, CanEditTaskProjectCommandExecute);
@@ -219,9 +273,14 @@ namespace ProjectManagement.ViewModels
             {
                 db.Projects.Load();
                 db.Tasks.Load();
+                db.Statuses.Load();
                 db.Employees.Where(e => e.Projects.Contains(Project)).ToList().ForEach(EmployeesProject.Add);
                 Phases = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).Phases.ToList();
+                if (DateOnly.FromDateTime(DateTime.Now) > db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).StartDate) DateStart = DateOnly.FromDateTime(DateTime.Now);
+                else DateStart = db.Projects.Include(e => e.Phases).Single(e => e.Id == Project.Id).StartDate;
+                
             }
+
         }
     }
 }

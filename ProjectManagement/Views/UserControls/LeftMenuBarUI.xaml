@@ -24,6 +24,11 @@
             <DropShadowEffect Opacity="0.2"
                               BlurRadius="7"/>
         </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
         <StackPanel>
             <Grid>
                 <Button Background="Transparent"
@@ -52,6 +57,8 @@
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
                             ConverterParameter=WidthMainIcon,
                             Converter={StaticResource WidthWindowToWidthLeftMenuUIConvecter}}" 
+                                       d:Width="30"
+                                       d:Height="30"
                                        Height="{Binding ActualHeight, 
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
                             ConverterParameter=WidthMainIcon,
@@ -107,6 +114,7 @@
                             RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
                             ConverterParameter=WidthIcon,
                             Converter={StaticResource WidthWindowToWidthLeftMenuUIConvecter}}"/>
+                        <d:Setter Property="Width" Value="40"/>
                         <Setter Property="Foreground" Value="#A1A3B4"/>
                         <Setter Property="Margin" Value="11, 4"/>
                     </Style>
@@ -143,13 +151,46 @@
                             CommandParameter="{Binding ProjectsPage}">
                         <Button.Content>
                             <StackPanel>
-                                <fa:SvgAwesome Icon="Solid_ProjectDiagram"/>
+                                <fa:SvgAwesome Icon="Solid_Folder"/>
                                 <TextBlock Text="Проекты"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button Command="{Binding GoToPageProjectsCommand}"
+                            CommandParameter="{Binding ProjectsPage}">
+                        <Button.Content>
+                            <StackPanel>
+                                <fa:SvgAwesome Icon="Solid_Envelope"/>
+                                <TextBlock Text="Уведомления"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
+            </StackPanel>
+
+            <Button Grid.Row="1"
+                    Command="{Binding BackCommand}"
+                    Background="Transparent"
+                    Padding="0"
+                    Margin="0,8"
+                    HorizontalAlignment="Left">
+                <Button.Resources>
+                    <Style TargetType="fa:SvgAwesome">
+                        <Setter Property="Width" Value="{Binding ActualHeight, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}},
+                            ConverterParameter=WidthIcon,
+                            Converter={StaticResource WidthWindowToWidthLeftMenuUIConvecter}}"/>
+                        <d:Setter Property="Width" Value="40"/>
+                        <Setter Property="Foreground" Value="#A1A3B4"/>
+                        <Setter Property="Margin" Value="11, 4"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Content>
+                    <fa:SvgAwesome Icon="Solid_DoorOpen"
+                                   Foreground="#A1A3B4"/>
+                </Button.Content>
+            </Button>
+        </Grid>
     </Border>
 </UserControl>

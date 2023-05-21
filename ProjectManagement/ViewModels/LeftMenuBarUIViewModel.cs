@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ProjectManagement.Infrastructure.Commands;
+using ProjectManagement.Models;
 using ProjectManagement.Services;
 using ProjectManagement.Services.NavigatorPages;
 using ProjectManagement.ViewModels.Base;
+using System;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -95,6 +97,15 @@ namespace ProjectManagement.ViewModels
             Navigation.Navigate(Navigation.MainPageViewModelAlias, MainPage);
         }
         private bool CanGoToPageMainCommandExecute(object p) => true;
+
+        public ICommand BackCommand { get; }
+        private void OnBackCommandExecuted(object p)
+        {
+            CurrentEmployee.currentEmployee = new Employee();
+            App.Services.GetRequiredService<IUserDialog>().OpenAuthorizationWindow();
+            App.Services.GetRequiredService<IUserDialog>().CloseMainWindow();
+        }
+        private bool CanBackCommandExecute(object p) => true;
         #endregion
 
         #region Конструктор
@@ -106,6 +117,7 @@ namespace ProjectManagement.ViewModels
             GoToPageProjectsCommand = new RelayCommand(OnGoToPageProjectCommandExecuted, CanGoToPageProjectCommandExecute);
             GoToPageTasksCommand = new RelayCommand(OnGoToPageTasksCommandExecuted, CanGoToPageTasksCommandExecute);
             GoToPageMainCommand = new RelayCommand(OnGoToPageMainCommandExecuted, CanGoToPageMainCommandExecute);
+            BackCommand = new RelayCommand(OnBackCommandExecuted, CanBackCommandExecute);
 
             _mainPageViewModel = App.Services.GetRequiredService<IViewModelsResolver>().GetViewModelInstance(MainPageViewModelAlias);
             Navigation.Navigate(Navigation.MainPageViewModelAlias, MainPage);

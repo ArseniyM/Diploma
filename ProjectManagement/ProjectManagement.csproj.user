@@ -84,6 +84,9 @@
     <Page Update="Resources\DataTemple\ListBoxTasks.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Resources\Styles\StyleGanttChart.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Resources\Styles\StylePasswordBoxBorderRadius.xaml">
       <SubType>Designer</SubType>
     </Page>

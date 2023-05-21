@@ -26,6 +26,11 @@ namespace ProjectManagement.Services
             window.Show();
         }
 
+        public void CloseMainWindow()
+        {
+            _MainWindow.Close();
+        }
+
         private AuthorizationWindow? _AuthorizationWindow;
         public void OpenAuthorizationWindow()
         {

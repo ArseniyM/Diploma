@@ -5,7 +5,10 @@ using ProjectManagement.ViewModels;
 using ProjectManagement.ViewModels.Base;
 using ProjectManagement.Views.Windows;
 using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows;
+using System.Windows.Markup;
 
 namespace ProjectManagement
 {
@@ -190,7 +193,9 @@ namespace ProjectManagement
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            FrameworkElement.LanguageProperty.OverrideMetadata(
+        typeof(FrameworkElement),
+        new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
             Services.GetRequiredService<IUserDialog>().OpenAuthorizationWindow();
         }
     }

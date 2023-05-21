@@ -122,6 +122,7 @@
 
                 </ResourceDictionary>
                 <ResourceDictionary>
+                    
                     <Style x:Key="FocusVisual">
                         <Setter Property="Control.Template">
                             <Setter.Value>
