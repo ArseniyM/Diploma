@@ -57,7 +57,7 @@ namespace ProjectManagement.Views.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/ProjectManagement;component/views/usercontrols/leftmenubarui.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/ProjectManagement;V1.0.0.0;component/views/usercontrols/leftmenubarui.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\UserControls\LeftMenuBarUI.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
