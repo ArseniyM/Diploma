@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
 using ProjectManagement.Models;
@@ -159,7 +160,7 @@ namespace ProjectManagement.ViewModels
             Projects.Clear();
 
             using (ProjectManagementContext db = new ())
-                db.Projects.ToList().ForEach(Projects.Add);
+                db.Projects.Include(e => e.Employees).Where(e => e.Employees.Contains(CurrentEmployee.currentEmployee) || CurrentEmployee.currentEmployee.Admin).ToList().ForEach(Projects.Add);
 
             Projects.Where(e => !e.Name.Contains(FilterStr) && LevenshteinDistance.Distance(e.Name, FilterStr) > 3).ToList().ForEach(e => Projects.Remove(e));
 
@@ -192,7 +193,7 @@ namespace ProjectManagement.ViewModels
             AddProjectCommand = new RelayCommand(OnAddProjectCommandExecuted, CanAddProjectCommandExecute);
             using (ProjectManagementContext db = new())
             {
-                db.Projects.ToList().ForEach(Projects.Add);
+                db.Projects.Include(e => e.Employees).Where(e => e.Employees.Contains(CurrentEmployee.currentEmployee) || CurrentEmployee.currentEmployee.Admin).ToList().ForEach(Projects.Add);
             }
         }
     }

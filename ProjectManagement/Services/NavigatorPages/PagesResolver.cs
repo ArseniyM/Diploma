@@ -16,6 +16,7 @@ namespace ProjectManagement.Services.NavigatorPages
             _pagesResolvers.Add(Navigation.OrganizationalStructurePageAlias, () => new OrganizationalStructurePage());
             _pagesResolvers.Add(Navigation.TasksPageAlias, () => new MyTasksPage());
             _pagesResolvers.Add(Navigation.ProjectsPageAlias, () => new ProjectsPage());
+            _pagesResolvers.Add(Navigation.NotificationsPageAlias, () => new NotificationsPage());
         }
 
         public Page GetPageInstance(string alias)

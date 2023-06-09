@@ -156,8 +156,8 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                    <Button Command="{Binding GoToPageProjectsCommand}"
-                            CommandParameter="{Binding ProjectsPage}">
+                        <Button Command="{Binding GoToPageNotificationsCommand}"
+                            CommandParameter="{Binding NotificationsPage}">
                         <Button.Content>
                             <StackPanel>
                                 <fa:SvgAwesome Icon="Solid_Envelope"/>

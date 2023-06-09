@@ -307,6 +307,22 @@ namespace ProjectManagement.ViewModels
                         };
                         db.Tasks.Where(e => MainTasks.Contains(e)).ToList().ForEach(e => e.DependentTasks.Add(task));
                         db.Tasks.Add(task);
+                        db.Notifications.Add(new Notification()
+                        {
+                            Employee = ExecutorEmployee.Id,
+                            Id = (db.Notifications.Any()) ? db.Notifications.Max(e => e.Id) + 1 : 1,
+                            Text = "Вам поставлена новая задача \"" + Name + "\" в проект " + ChangingProject.project.Name,
+                            Date = DateOnly.FromDateTime(DateTime.Now),
+                            New = true
+                        });
+                        db.Notifications.Add(new Notification()
+                        {
+                            Employee = ResponsibEmployee.Id,
+                            Id = (db.Notifications.Any()) ? db.Notifications.Max(e => e.Id) + 2 : 1,
+                            Text = "Вы назначены ответсвенным за выполнение задачи \"" + Name + "\" в проект " + ChangingProject.project.Name,
+                            Date = DateOnly.FromDateTime(DateTime.Now),
+                            New = true
+                        });
                         db.SaveChanges();
                         MessageBox.Show("Задача успешно добавлена!", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
                         OnDialogComplete(EventArgs.Empty);

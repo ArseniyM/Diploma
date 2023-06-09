@@ -44,6 +44,11 @@ namespace ProjectManagement.ViewModels
                 ChangingProject.project = project;
                 App.Services.GetRequiredService<IUserDialog>().OpenProjectWindow();
                 ChangingProject.project = null!;
+                using (ProjectManagementContext db = new())
+                {
+                    Projects = db.Projects.Where(e => e.Employees.Contains(CurrentEmployee.currentEmployee)).ToList();
+                    Tasks = db.Tasks.Where(e => e.Executor == CurrentEmployee.currentEmployee.Id && e.Status != 3).ToList();
+                }
             }
         }
         private bool CanOpenInfoProjectCommandExecute(object p) => true;

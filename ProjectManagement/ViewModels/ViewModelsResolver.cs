@@ -17,6 +17,7 @@ namespace ProjectManagement.ViewModels
             _vmResolvers.Add(LeftMenuBarUIViewModel.OrganizationalStructurePageViewModelAlias, () => new OrganizationalStructurePageViewModel());
             _vmResolvers.Add(LeftMenuBarUIViewModel.ProjectsPageViewModelAlias, () => new ProjectsPageViewModel());
             _vmResolvers.Add(LeftMenuBarUIViewModel.TasksPageAlias, () => new MyTasksPageViewModel());
+            _vmResolvers.Add(LeftMenuBarUIViewModel.NotificationsPageViewModelAlias, () => new NotificationsPageViewModel());
             
             _vmResolvers.Add(LeftMenuBarUIViewModel.NotFoundPageViewModelAlias, () => new Page404ViewModel());
         }

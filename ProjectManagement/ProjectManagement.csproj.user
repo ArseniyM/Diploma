@@ -13,6 +13,9 @@
     <Compile Update="Views\Pages\MyTasksPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Pages\NotificationsPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Pages\OrganizationalStructurePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,7 +64,13 @@
     <Compile Update="Views\Windows\EditEmployeeWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Windows\EditPhaseWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\Windows\EditPostWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\EditProjectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Windows\EditTaskWindow.xaml.cs">
@@ -114,6 +123,9 @@
     <Page Update="Views\Pages\MyTasksPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Pages\NotificationsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Pages\OrganizationalStructurePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -162,7 +174,13 @@
     <Page Update="Views\Windows\EditEmployeeWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\Windows\EditPhaseWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\Windows\EditPostWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Windows\EditProjectWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Windows\EditTaskWindow.xaml">

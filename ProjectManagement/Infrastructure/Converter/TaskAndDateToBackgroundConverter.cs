@@ -23,8 +23,11 @@ namespace ProjectManagement.Infrastructure.Converter
                     db.Tasks.Load();
 
                     Task task = db.Tasks.Include(e => e.MainTasks).Single(e => e.Id == (task1.Id));
-                    DateOnly DateStart = (task.MainTasks.Count == 0) ? db.Projects.Where(e => e.Phases.Contains(task.PhaseNavigation)).Single().StartDate : FerialDays.AddDay(task.MainTasks.Max(e => e.DateComplet), 1);
-                    if (date >= DateStart && date <= task.DateComplet) return (new System.Windows.Media.BrushConverter()).ConvertFromString("#895164")!;
+                    DateOnly DateStart = (task.MainTasks.Count == 0) ? 
+                        db.Projects.Where(e => e.Phases.Contains(task.PhaseNavigation)).Single().StartDate : 
+                        FerialDays.AddDay(task.MainTasks.Max(e => e.DateComplet), 1);
+                    if (date >= DateStart && date <= task.DateComplet) 
+                        return (new System.Windows.Media.BrushConverter()).ConvertFromString("#895164")!;
                     else return System.Windows.Media.Brushes.Transparent;
                 }
             }

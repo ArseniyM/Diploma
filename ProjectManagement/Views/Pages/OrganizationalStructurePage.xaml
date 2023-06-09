@@ -189,7 +189,8 @@
                                     <TextBlock Text="Проекты"
                                                Grid.Row="6"
                                                Grid.Column="0"
-                                               FontWeight="Bold"/>
+                                               FontWeight="Bold"
+                                               Visibility="{Binding DataContext.AdminCurrent, RelativeSource={RelativeSource AncestorType=Page}}"/>
                                     <TextBlock Text="{Binding Surname}"
                                                Grid.Row="0"
                                                Grid.Column="1"
@@ -215,6 +216,7 @@
                                                Grid.Row="5"
                                                Foreground="Black"/>
                                     <ListBox ItemsSource="{Binding Projects}"
+                                             Visibility="{Binding DataContext.AdminCurrent, RelativeSource={RelativeSource AncestorType=Page}}"
                                              Grid.Column="1"
                                              Grid.Row="6"
                                              Foreground="Black"
@@ -311,9 +313,9 @@
                             <TextBlock Text="Департаменты"/>
                             <Button Style="{StaticResource BtnHeaderWindow}"
                                     HorizontalAlignment="Right"
-                                    Command="{Binding AddDepartamentSystemCommand}">
-                                <fa:SvgAwesome Icon="Solid_Plus"
-                                               Visibility="{Binding AdminCurrent}"/>
+                                    Command="{Binding AddDepartamentSystemCommand}"
+                                    Visibility="{Binding AdminCurrent}">
+                                <fa:SvgAwesome Icon="Solid_Plus"/>
                             </Button>
                         </Grid>
                         <Border Grid.Row="0"
@@ -368,9 +370,9 @@
                             <TextBlock Text="Должности"/>
                             <Button Style="{StaticResource BtnHeaderWindow}"
                                     HorizontalAlignment="Right"
-                                    Command="{Binding AddPostSystemCommand}">
-                                <fa:SvgAwesome Icon="Solid_Plus"
-                                           Visibility="{Binding AdminCurrent}"/>
+                                    Command="{Binding AddPostSystemCommand}"
+                                    Visibility="{Binding AdminCurrent}">
+                                <fa:SvgAwesome Icon="Solid_Plus"/>
                             </Button>
                         </Grid>
                         <Border Grid.Row="0"

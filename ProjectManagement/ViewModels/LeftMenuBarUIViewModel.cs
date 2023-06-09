@@ -18,6 +18,7 @@ namespace ProjectManagement.ViewModels
         public static readonly string OrganizationalStructurePageViewModelAlias = "OrganizationalStructurePage";
         public static readonly string TasksPageAlias = "TasksPage";
         public static readonly string ProjectsPageViewModelAlias = "ProjectsPageViewModel";
+        public static readonly string NotificationsPageViewModelAlias = "NotificationsPageViewModel";
         public static readonly string NotFoundPageViewModelAlias = "Page404ViewModel";
 
 
@@ -47,6 +48,12 @@ namespace ProjectManagement.ViewModels
         public INotifyPropertyChanged TasksPage
         {
             get => _tasksPageViewModel;
+        }
+
+        private readonly INotifyPropertyChanged _notificationsPageViewModel;
+        public INotifyPropertyChanged NotificationsPage
+        {
+            get => _notificationsPageViewModel;
         }
 
         #region StatusMenu: Bool - Состояние меню (true - развернуто, false - свернуто)
@@ -98,6 +105,13 @@ namespace ProjectManagement.ViewModels
         }
         private bool CanGoToPageMainCommandExecute(object p) => true;
 
+        public ICommand GoToPageNotificationsCommand { get; }
+        private void OnGoToPageNotificationsCommandExecuted(object p)
+        {
+            Navigation.Navigate(Navigation.NotificationsPageAlias, NotificationsPage);
+        }
+        private bool CanGoToPageNotificationsCommandExecute(object p) => true;
+
         public ICommand BackCommand { get; }
         private void OnBackCommandExecuted(object p)
         {
@@ -118,6 +132,7 @@ namespace ProjectManagement.ViewModels
             GoToPageTasksCommand = new RelayCommand(OnGoToPageTasksCommandExecuted, CanGoToPageTasksCommandExecute);
             GoToPageMainCommand = new RelayCommand(OnGoToPageMainCommandExecuted, CanGoToPageMainCommandExecute);
             BackCommand = new RelayCommand(OnBackCommandExecuted, CanBackCommandExecute);
+            GoToPageNotificationsCommand = new RelayCommand(OnGoToPageNotificationsCommandExecuted, CanGoToPageNotificationsCommandExecute);
 
             _mainPageViewModel = App.Services.GetRequiredService<IViewModelsResolver>().GetViewModelInstance(MainPageViewModelAlias);
             Navigation.Navigate(Navigation.MainPageViewModelAlias, MainPage);
@@ -131,6 +146,7 @@ namespace ProjectManagement.ViewModels
             _organizationalStructurePageViewModel = _resolver.GetViewModelInstance(OrganizationalStructurePageViewModelAlias);
             _projectsPageViewModel = _resolver.GetViewModelInstance(ProjectsPageViewModelAlias);
             _tasksPageViewModel = _resolver.GetViewModelInstance(TasksPageAlias);
+            _notificationsPageViewModel = _resolver.GetViewModelInstance(NotificationsPageViewModelAlias);
         }
         #endregion
     }

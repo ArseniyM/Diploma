@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\App.xaml
-341517656096
+37-2125622685
 
-91-1400696224
-2181398422959
-Resources\DataTemple\ListBoxEmployees.xaml;Resources\DataTemple\ListBoxProjects.xaml;Resources\DataTemple\ListBoxTasks.xaml;Resources\Styles\StyleBtnHeaderWindow.xaml;Resources\Styles\StyleButtonBorderRadius.xaml;Resources\Styles\StyleGanttChart.xaml;Resources\Styles\StylePasswordBoxBorderRadius.xaml;Resources\Styles\StyleTabControlRadius.xaml;Resources\Styles\StyleTextBoxBorderRadius.xaml;Resources\Styles\StyleToggleButton.xaml;Resources\Styles\StyleWindowChrome.xaml;Views\Pages\MainPage.xaml;Views\Pages\MyTasksPage.xaml;Views\Pages\OrganizationalStructurePage.xaml;Views\Pages\Page404.xaml;Views\Pages\ProjectsPage.xaml;Views\UserControls\HeaderWindowUI.xaml;Views\UserControls\LeftMenuBarUI.xaml;Views\Windows\AddDepartmentWindow.xaml;Views\Windows\AddEmployeeTaskWindow.xaml;Views\Windows\AddEmployeeWindow.xaml;Views\Windows\AddPhaseWindow.xaml;Views\Windows\AddPostWindow.xaml;Views\Windows\AddProjectWindow.xaml;Views\Windows\AddTaskWindow.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\EditDepartmentWindow.xaml;Views\Windows\EditEmployeesProjectWindow.xaml;Views\Windows\EditEmployeeWindow.xaml;Views\Windows\EditPostWindow.xaml;Views\Windows\EditTaskWindow.xaml;Views\Windows\MainWindow.xaml;Views\Windows\NewEmployeeWindow.xaml;Views\Windows\ProjectWindow.xaml;
+98428433792
+219179356033
+Resources\DataTemple\ListBoxEmployees.xaml;Resources\DataTemple\ListBoxProjects.xaml;Resources\DataTemple\ListBoxTasks.xaml;Resources\Styles\StyleBtnHeaderWindow.xaml;Resources\Styles\StyleButtonBorderRadius.xaml;Resources\Styles\StyleGanttChart.xaml;Resources\Styles\StylePasswordBoxBorderRadius.xaml;Resources\Styles\StyleTabControlRadius.xaml;Resources\Styles\StyleTextBoxBorderRadius.xaml;Resources\Styles\StyleToggleButton.xaml;Resources\Styles\StyleWindowChrome.xaml;Views\Pages\MainPage.xaml;Views\Pages\MyTasksPage.xaml;Views\Pages\NotificationsPage.xaml;Views\Pages\OrganizationalStructurePage.xaml;Views\Pages\Page404.xaml;Views\Pages\ProjectsPage.xaml;Views\UserControls\HeaderWindowUI.xaml;Views\UserControls\LeftMenuBarUI.xaml;Views\Windows\AddDepartmentWindow.xaml;Views\Windows\AddEmployeeTaskWindow.xaml;Views\Windows\AddEmployeeWindow.xaml;Views\Windows\AddPhaseWindow.xaml;Views\Windows\AddPostWindow.xaml;Views\Windows\AddProjectWindow.xaml;Views\Windows\AddTaskWindow.xaml;Views\Windows\AuthorizationWindow.xaml;Views\Windows\EditDepartmentWindow.xaml;Views\Windows\EditEmployeesProjectWindow.xaml;Views\Windows\EditEmployeeWindow.xaml;Views\Windows\EditPhaseWindow.xaml;Views\Windows\EditPostWindow.xaml;Views\Windows\EditProjectWindow.xaml;Views\Windows\EditTaskWindow.xaml;Views\Windows\MainWindow.xaml;Views\Windows\NewEmployeeWindow.xaml;Views\Windows\ProjectWindow.xaml;
 
 True
 

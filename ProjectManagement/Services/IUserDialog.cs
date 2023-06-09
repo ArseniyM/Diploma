@@ -3,7 +3,6 @@
     public interface IUserDialog
     {
         void OpenMainWindow();
-
         void CloseMainWindow();
         void OpenNewEmployeeWindow();
         void OpenAuthorizationWindow();
@@ -20,5 +19,7 @@
         void OpenAddTaskWindow();
         void OpenAddEmployeeTaskWindow();
         void OpenEditTaskWindow();
+        void OpenEditPhaseWindow();
+        void OpenEditProjectWindow();
     }
 }

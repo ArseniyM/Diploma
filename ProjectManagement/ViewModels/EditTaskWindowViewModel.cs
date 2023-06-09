@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Office.Interop.Excel;
 using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
 using ProjectManagement.Models;
-using ProjectManagement.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace ProjectManagement.ViewModels
@@ -82,12 +80,12 @@ namespace ProjectManagement.ViewModels
         public ICommand AddMessageCommand { get; }
         private void OnAddMessageCommandExecuted(object p)
         {
-            using(ProjectManagementContext db = new ProjectManagementContext())
+            using(ProjectManagementContext db = new ())
             {
                 db.Messages.Load();
                 db.Employees.Load();
 
-                Message message = new Message()
+                Message message = new ()
                 {
                     Text = TextMess,
                     Task = ChangingTask.task!.Id,
@@ -95,6 +93,19 @@ namespace ProjectManagement.ViewModels
                     Id = (!db.Messages.Any()) ? 1 : db.Messages.Max(e => e.Id) + 1
                 };
                 db.Messages.Add(message);
+                int n = 1;
+                foreach(Employee emp in db.Projects.Include(e => e.Employees).Single(e => e.Id == ChangingProject.project.Id).Employees)
+                {
+                    db.Notifications.Add(new Notification()
+                    {
+                        Employee = emp.Id,
+                        Id = (db.Notifications.Any()) ? db.Notifications.Max(e => e.Id) + n : n,
+                        Text = "Новое сообщение \"" + TextMess +"\" в задаче \"" + ChangingTask.task.Name + "\" в проект " + ChangingProject.project.Name,
+                        Date = DateOnly.FromDateTime(DateTime.Now),
+                        New = true
+                    });
+                    n++;
+                }
                 db.SaveChanges();
                 TextMess = "";
                 ListMessages = db.Tasks.Single(e => e.Id == EditTask.Id).Messages.ToList();

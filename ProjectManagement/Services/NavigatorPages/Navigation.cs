@@ -12,6 +12,7 @@ namespace ProjectManagement.Services.NavigatorPages
         public static readonly string OrganizationalStructurePageAlias = "OrganizationalStructurePage";
         public static readonly string TasksPageAlias = "TasksPage";
         public static readonly string ProjectsPageAlias = "ProjectsPage";
+        public static readonly string NotificationsPageAlias = "NotificationsPage";
         public static readonly string NotFoundPageAlias = "404";
 
         #endregion

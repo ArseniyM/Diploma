@@ -81,6 +81,7 @@ namespace ProjectManagement.ViewModels
                     emp.DateBirth = date;
                     emp.New = false;
                     db.SaveChanges();
+                    CurrentEmployee.currentEmployee = emp;
                     _userDialog.OpenMainWindow();
                     OnDialogComplete(EventArgs.Empty);
                 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using ProjectManagement.ViewModels;
 using ProjectManagement.Views.Windows;
 using System;
 
@@ -268,6 +269,38 @@ namespace ProjectManagement.Services
             window.Closed += (_, _) => _EditTaskWindow = null;
 
             _EditTaskWindow = window;
+            window.ShowDialog();
+        }
+
+        private EditPhaseWindow? _EditPhaseWindow;
+        public void OpenEditPhaseWindow()
+        {
+            if (_EditPhaseWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<EditPhaseWindow>();
+            window.Closed += (_, _) => _EditPhaseWindow = null;
+
+            _EditPhaseWindow = window;
+            window.ShowDialog();
+        }
+
+        private EditProjectWindow? _EditProjectWindow;
+        public void OpenEditProjectWindow()
+        {
+            if (_EditProjectWindow is { } window)
+            {
+                window.ShowDialog();
+                return;
+            }
+
+            window = _Services.GetRequiredService<EditProjectWindow>();
+            window.Closed += (_, _) => _EditProjectWindow = null;
+
+            _EditProjectWindow = window;
             window.ShowDialog();
         }
     }

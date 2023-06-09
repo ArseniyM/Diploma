@@ -102,3 +102,11 @@ C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\MainPage.g.cs
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\MainPage.baml
 C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Resources\Styles\StyleGanttChart.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\ProjectManagement.csproj.ResolveComReference.cache
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditPhaseWindow.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditPhaseWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditProjectWindow.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Windows\EditProjectWindow.baml
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\NotificationsPage.g.cs
+C:\Users\Administrator\source\repos\ArseniyM\Diploma\ProjectManagement\obj\Debug\net7.0-windows\Views\Pages\NotificationsPage.baml

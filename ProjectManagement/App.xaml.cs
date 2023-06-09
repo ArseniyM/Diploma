@@ -37,6 +37,8 @@ namespace ProjectManagement
             services.AddTransient<AddTaskWindowViewModel>();
             services.AddTransient<AddEmployeeTaskWindowViewModel>();
             services.AddTransient<EditTaskWindowViewModel>();
+            services.AddTransient<EditPhaseWindowViewModel>();
+            services.AddTransient<EditProjectWindowViewModel>();
 
             services.AddSingleton<IUserDialog, UserDialogServices>();
             services.AddSingleton<IPageResolver, PagesResolver>();
@@ -186,16 +188,32 @@ namespace ProjectManagement
                 return window;
             });
 
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<EditPhaseWindowViewModel>();
+                var window = new EditPhaseWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+            
+            services.AddTransient(s =>
+            {
+                var model = s.GetRequiredService<EditProjectWindowViewModel>();
+                var window = new EditProjectWindow() { DataContext = model };
+                model.DialogComplete += (_, _) => window.Close();
+
+                return window;
+            });
+
             return services;
         }
-
-
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             FrameworkElement.LanguageProperty.OverrideMetadata(
-        typeof(FrameworkElement),
-        new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+                typeof(FrameworkElement),
+                new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
             Services.GetRequiredService<IUserDialog>().OpenAuthorizationWindow();
         }
     }

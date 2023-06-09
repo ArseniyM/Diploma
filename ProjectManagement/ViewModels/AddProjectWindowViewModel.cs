@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
+using ProjectManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -76,7 +77,7 @@ namespace ProjectManagement.ViewModels
                     Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToList();
                     Employees = Employees.Where(e => (e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
                                                       e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
-                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3))) && !EmployeesListBox.Contains(e)).ToList();
+                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3))) && !EmployeesListBox.Where(i => i.Id == e.Id).Any()).ToList();
                 }
             }
         }
@@ -140,7 +141,17 @@ namespace ProjectManagement.ViewModels
                             Comment = Comment
                         };
                         foreach (Employee emp in EmployeesListBox)
+                        {
                             db.Employees.Where(e => e.Id == emp.Id).Single().Projects.Add(project);
+                            db.Notifications.Add(new Notification()
+                            {
+                                Employee = emp.Id,
+                                Id = (db.Notifications.Any()) ? db.Notifications.Max(e => e.Id) + 1 : 1,
+                                Text = "Вы были добавлены в проект " + Name,
+                                Date = DateOnly.FromDateTime(DateTime.Now),
+                                New = true
+                            });
+                        }
                         db.Projects.Add(project);
                         db.SaveChanges();
                         MessageBox.Show("Новый проект успешно создан", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -204,7 +204,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <TextBox Style="{StaticResource TextBoxBorderRadius}"
                                          Text="{Binding TextMess, UpdateSourceTrigger=PropertyChanged}"
                                          TextWrapping="Wrap"

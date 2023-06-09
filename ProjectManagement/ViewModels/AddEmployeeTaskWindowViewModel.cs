@@ -1,4 +1,5 @@
-﻿using ProjectManagement.Infrastructure.Classes;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectManagement.Infrastructure.Classes;
 using ProjectManagement.Infrastructure.Commands;
 using ProjectManagement.Models;
 using System;
@@ -36,7 +37,8 @@ namespace ProjectManagement.ViewModels
                 Set(ref _filterStr, value);
                 using (ProjectManagementContext db = new())
                 {
-                    Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToArray();
+                    Project pr = db.Projects.Include(e => e.Employees).Single(e => e.Id == ChangingProject.project.Id);
+                    Employees = pr.Employees.Where(e => !e.Blocked).ToArray();
                     Employees = Employees.Where(e => (e.Surname.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Surname, FilterStr) <= 3 ||
                                                      e.Name.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Name, FilterStr) <= 3 ||
                                                      (e.Patronymic != null && (e.Patronymic.StartsWith(FilterStr) || LevenshteinDistance.Distance(e.Patronymic, FilterStr) <= 3)))).ToArray();
@@ -67,7 +69,8 @@ namespace ProjectManagement.ViewModels
 
             using (ProjectManagementContext db = new())
             {
-                Employees = db.Employees.Where(e => !e.Blocked && !e.New.Value).ToArray();
+                Project pr = db.Projects.Include(e => e.Employees).Single(e => e.Id == ChangingProject.project.Id);
+                Employees = pr.Employees.Where(e => !e.Blocked).ToArray();
             }
         }
     }

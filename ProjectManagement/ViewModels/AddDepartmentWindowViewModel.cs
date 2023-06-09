@@ -16,6 +16,8 @@ namespace ProjectManagement.ViewModels
             set => Set(ref _name, value);
         }
 
+        #region Команды
+        #region AddDepartamentSystemCommand - добавление департамента
         public ICommand AddDepartamentSystemCommand { get; }
         private void OnAddDepartamentCommandExecuted(object p)
         {
@@ -47,11 +49,13 @@ namespace ProjectManagement.ViewModels
             }
         }
         private bool CanAddDepartamentCommandExecute(object p) => Name != "";
-
+        #endregion
+        #region BackCommand - команда отмены
         public ICommand BackCommand { get; }
         private void OnBackCommandExecuted(object p) => OnDialogComplete(EventArgs.Empty);
         private bool CanBackCommandExecute(object p) => true;
-
+        #endregion
+        #endregion
         public AddDepartmentWindowViewModel()
         {
             AddDepartamentSystemCommand = new RelayCommand(OnAddDepartamentCommandExecuted, CanAddDepartamentCommandExecute);
