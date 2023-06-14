@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace ProjectManagement.ViewModels
 {
-    class AddEmployeeWindowViewModel: ViewModel
+    public class AddEmployeeWindowViewModel: ViewModel
     {
         private String _Login = "";
         public String Login

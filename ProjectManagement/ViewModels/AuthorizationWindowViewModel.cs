@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace ProjectManagement.ViewModels
 {
-    class AuthorizationWindowViewModel : ViewModel
+    public class AuthorizationWindowViewModel : ViewModel
     {
         #region Поля
 
@@ -78,13 +78,13 @@ namespace ProjectManagement.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь с логином \""+Login+"\" не найден!","Ошибка",MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Пользователь с логином \"" + Login + "\" не найден!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
         private bool CanAuthorizationSystemCommandExecute(object p) => (Login != "" && ((PasswordBox)p).Password != "");
         #endregion
-        
+
         #endregion
 
         #region Конструктор
@@ -98,7 +98,7 @@ namespace ProjectManagement.ViewModels
             #endregion
         }
 
-        public AuthorizationWindowViewModel(IUserDialog userDialog): this()
+        public AuthorizationWindowViewModel(IUserDialog userDialog) : this()
         {
             _userDialog = userDialog;
         }
